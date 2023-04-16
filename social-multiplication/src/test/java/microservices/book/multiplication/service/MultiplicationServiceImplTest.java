@@ -58,5 +58,7 @@ public class MultiplicationServiceImplTest {
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
 
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
+
+        assertThat(attemptResult).isFalse();
     }
 }
