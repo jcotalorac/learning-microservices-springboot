@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.mockito.BDDMockito.given;
+
 @SpringBootTest
 public class MultiplicationServiceTest {
 
@@ -16,6 +18,8 @@ public class MultiplicationServiceTest {
     @Test
     public void createRandomMultiplicationTest() {
 
+        given(randomGeneratorService.generateRandomFactor())
+                .willReturn(50, 30);
     }
 
 }
