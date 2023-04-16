@@ -35,4 +35,11 @@ public class MultiplicationServiceImplTest {
         assertThat(randomMultiplication.getFactorB()).isEqualTo(30);
         assertThat(randomMultiplication.getResult()).isEqualTo(1500);
     }
+
+    @Test
+    public void checkCorrectAttemptTest() {
+    }
+
+    @Test
+    public void checkWrongAttemptTest() {}
 }
