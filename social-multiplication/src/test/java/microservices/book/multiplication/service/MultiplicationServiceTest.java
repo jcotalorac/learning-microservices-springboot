@@ -1,5 +1,6 @@
 package microservices.book.multiplication.service;
 
+import microservices.book.multiplication.domain.Multiplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,8 @@ public class MultiplicationServiceTest {
 
         given(randomGeneratorService.generateRandomFactor())
                 .willReturn(50, 30);
+
+        Multiplication randomMultiplication = multiplicationService.createRandomMultiplication();
     }
 
 }
