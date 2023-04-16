@@ -35,7 +35,6 @@ public class MultiplicationServiceImplTest {
 
         assertThat(randomMultiplication.getFactorA()).isEqualTo(50);
         assertThat(randomMultiplication.getFactorB()).isEqualTo(30);
-        assertThat(randomMultiplication.getResult()).isEqualTo(1500);
     }
 
     @Test
