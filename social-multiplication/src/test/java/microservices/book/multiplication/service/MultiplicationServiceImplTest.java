@@ -51,5 +51,10 @@ public class MultiplicationServiceImplTest {
     }
 
     @Test
-    public void checkWrongAttemptTest() {}
+    public void checkWrongAttemptTest() {
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+    }
 }
