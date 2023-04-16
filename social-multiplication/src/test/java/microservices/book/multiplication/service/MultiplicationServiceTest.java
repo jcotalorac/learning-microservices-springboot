@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @SpringBootTest
@@ -23,6 +24,10 @@ public class MultiplicationServiceTest {
                 .willReturn(50, 30);
 
         Multiplication randomMultiplication = multiplicationService.createRandomMultiplication();
+
+        assertThat(randomMultiplication.getFactorA()).isEqualTo(50);
+        assertThat(randomMultiplication.getFactorB()).isEqualTo(30);
+        assertThat(randomMultiplication.getResult()).isEqualTo(1500);
     }
 
 }
