@@ -1,5 +1,7 @@
 package microservices.book.multiplication.controller;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import microservices.book.multiplication.service.MultiplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,5 +16,12 @@ public final class MultiplicationResultAttemptController {
     @Autowired
     public MultiplicationResultAttemptController(final MultiplicationService multiplicationService) {
         this.multiplicationService = multiplicationService;
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    private static final class ResultResponse {
+
+        private final boolean correct;
     }
 }
