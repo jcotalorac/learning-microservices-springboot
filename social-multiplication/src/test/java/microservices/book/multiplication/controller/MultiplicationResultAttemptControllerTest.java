@@ -17,8 +17,15 @@ public class MultiplicationResultAttemptControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void postResultReturnCorrect(){}
+    public void postResultReturnCorrect(){
+        genericParameterizedTest(true);
+    }
 
     @Test
-    public void postResultReturnNotCorrect(){}
+    public void postResultReturnNotCorrect(){
+        genericParameterizedTest(false);
+    }
+
+    private void genericParameterizedTest(boolean b) {
+    }
 }
