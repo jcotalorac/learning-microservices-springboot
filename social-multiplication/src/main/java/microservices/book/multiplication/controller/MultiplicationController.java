@@ -20,6 +20,6 @@ public final class MultiplicationController {
 
     @GetMapping("/random")
     public Multiplication getRandomMultiplication() {
-        return null;
+        return multiplicationService.createRandomMultiplication();
     }
 }
