@@ -2,6 +2,7 @@ package microservices.book.multiplication.controller;
 
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.service.MultiplicationService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
@@ -17,4 +18,7 @@ public class MultiplicationControllerTest {
     @Autowired
     private MockMvc mockMvc;
     private JacksonTester<Multiplication> json;
+
+    @Test
+    public void getRandomMultiplicationTest() {}
 }
