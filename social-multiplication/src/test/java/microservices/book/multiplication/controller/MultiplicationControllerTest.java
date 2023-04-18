@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @WebMvcTest(MultiplicationController.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -31,9 +34,13 @@ public class MultiplicationControllerTest {
     }
 
     @Test
-    public void getRandomMultiplicationTest() {
+    public void getRandomMultiplicationTest() throws Exception {
 
         given(multiplicationService.createRandomMultiplication())
                 .willReturn(new Multiplication(70,20));
+
+        MockHttpServletResponse response = mockMvc.perform(get("/multiplications/random")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
     }
 }
