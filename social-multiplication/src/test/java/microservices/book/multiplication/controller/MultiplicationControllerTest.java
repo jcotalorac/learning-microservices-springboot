@@ -12,6 +12,8 @@ import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.BDDMockito.given;
+
 @WebMvcTest(MultiplicationController.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MultiplicationControllerTest {
@@ -29,5 +31,9 @@ public class MultiplicationControllerTest {
     }
 
     @Test
-    public void getRandomMultiplicationTest() {}
+    public void getRandomMultiplicationTest() {
+
+        given(multiplicationService.createRandomMultiplication())
+                .willReturn(new Multiplication(70,20));
+    }
 }
