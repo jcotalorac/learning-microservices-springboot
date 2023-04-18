@@ -1,6 +1,8 @@
 package microservices.book.multiplication.controller;
 
+import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.domain.User;
 import microservices.book.multiplication.service.MultiplicationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +36,10 @@ public class MultiplicationResultAttemptControllerTest {
 
         given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class)))
                 .willReturn(correct);
+
+        User user = new User("john");
+        Multiplication multiplication = new Multiplication(50, 70);
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user,
+                multiplication, 3500);
     }
 }
