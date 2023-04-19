@@ -1,12 +1,16 @@
 package microservices.book.multiplication.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
 import microservices.book.multiplication.service.MultiplicationService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -14,10 +18,19 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @WebMvcTest(MultiplicationResultAttemptController.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MultiplicationResultAttemptControllerTest {
 
     @MockBean
     private MultiplicationService multiplicationService;
+
+    private JacksonTester<MultiplicationResultAttempt> jsonResult;
+    private JacksonTester<MultiplicationResultAttemptController.ResultResponse> jsonResponse;
+
+    @BeforeAll
+    public void setUp() {
+        JacksonTester.initFields(this, new ObjectMapper());
+    }
 
     @Autowired
     private MockMvc mockMvc;
