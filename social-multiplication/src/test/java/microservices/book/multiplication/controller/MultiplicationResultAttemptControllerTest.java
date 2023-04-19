@@ -12,10 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.io.IOException;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @WebMvcTest(MultiplicationResultAttemptController.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -36,16 +41,16 @@ public class MultiplicationResultAttemptControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    public void postResultReturnCorrect(){
+    public void postResultReturnCorrect() throws Exception {
         genericParameterizedTest(true);
     }
 
     @Test
-    public void postResultReturnNotCorrect(){
+    public void postResultReturnNotCorrect() throws Exception {
         genericParameterizedTest(false);
     }
 
-    private void genericParameterizedTest(boolean correct) {
+    private void genericParameterizedTest(final boolean correct) throws Exception {
 
         given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class)))
                 .willReturn(correct);
@@ -54,5 +59,10 @@ public class MultiplicationResultAttemptControllerTest {
         Multiplication multiplication = new Multiplication(50, 70);
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user,
                 multiplication, 3500);
+
+        MockHttpServletResponse response = mockMvc.perform(post("/results")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonResult.write(attempt).getJson()))
+                .andReturn().getResponse();
     }
 }
