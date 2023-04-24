@@ -13,7 +13,7 @@ function updateMultiplication() {
 $(document).ready(function(){
     updateMultiplication();
 
-    $("attempt-form").submit(function(event){
+    $("#attempt-form").submit(function(event){
         event.preventDefault();
 
         var a = $('.multiplication-a').text();
