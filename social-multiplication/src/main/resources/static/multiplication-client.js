@@ -4,6 +4,9 @@ function updateMultiplication() {
     }).then(function(data){
         $("#attempt-form").find("input[name='result-attempt']").val("");
         $("#attempt-form").find("input[name='user-alias']").val("");
+
+        $(".multiplication-a").empty().append(data.factorA);
+        $(".multiplication-b").empty().append(data.factorB);
     });
 }
 
