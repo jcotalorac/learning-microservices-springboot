@@ -35,5 +35,20 @@ $(document).ready(function(){
                 result: attempt
             }
         };
+
+        $.ajax({
+            url: "/results",
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(result) {
+                if (result.correct) {
+                    $('.result-message').empty().append("The result is correct! Congratulations!");
+                } else {
+                    $('.result-message').empty.append("Oops that's not correct! But keep trying!");
+                }
+            }
+        });
     });
 });
