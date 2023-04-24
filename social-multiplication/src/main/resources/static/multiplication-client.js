@@ -14,5 +14,6 @@ $(document).ready(function(){
     updateMultiplication();
 
     $("attempt-form").submit(function(event){
+        event.preventDefault();
     });
 });
