@@ -15,5 +15,8 @@ $(document).ready(function(){
 
     $("attempt-form").submit(function(event){
         event.preventDefault();
+
+        var a = $('.multiplication-a').text();
+        var b = $('.multiplication-b').text();
     });
 });
