@@ -18,5 +18,9 @@ $(document).ready(function(){
 
         var a = $('.multiplication-a').text();
         var b = $('.multiplication-b').text();
+
+        var form = $(this);
+        var attempt = $form.find("input[name='result-attempt']").val();
+        var userAlias = $form.find("input[name='user-alias']").val();
     });
 });
