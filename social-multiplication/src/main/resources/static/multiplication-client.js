@@ -22,5 +22,18 @@ $(document).ready(function(){
         var form = $(this);
         var attempt = $form.find("input[name='result-attempt']").val();
         var userAlias = $form.find("input[name='user-alias']").val();
+
+        var data = {
+            user: {
+                alias: userAlias
+            },
+            multiplication: {
+                factorA: a,
+                factorB: b
+            },
+            resultAttempt: {
+                result: attempt
+            }
+        };
     });
 });
