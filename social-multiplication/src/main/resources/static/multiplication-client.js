@@ -44,7 +44,7 @@ $(document).ready(function(){
                 if (result.correct) {
                     $('.result-message').empty().append("The result is correct! Congratulations!");
                 } else {
-                    $('.result-message').empty.append("Oops that's not correct! But keep trying!");
+                    $('.result-message').empty().append("Oops that's not correct! But keep trying!");
                 }
             }
         });
