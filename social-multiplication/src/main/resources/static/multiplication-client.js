@@ -31,9 +31,7 @@ $(document).ready(function(){
                 factorA: a,
                 factorB: b
             },
-            resultAttempt: {
-                result: attempt
-            }
+            resultAttempt: attempt
         };
 
         $.ajax({
