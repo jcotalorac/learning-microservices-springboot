@@ -20,8 +20,8 @@ $(document).ready(function(){
         var b = $('.multiplication-b').text();
 
         var form = $(this);
-        var attempt = $form.find("input[name='result-attempt']").val();
-        var userAlias = $form.find("input[name='user-alias']").val();
+        var attempt = form.find("input[name='result-attempt']").val();
+        var userAlias = form.find("input[name='user-alias']").val();
 
         var data = {
             user: {
