@@ -1,6 +1,8 @@
 package microservices.book.multiplication.service;
 
 import microservices.book.multiplication.domain.Multiplication;
+import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.domain.User;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -33,6 +35,29 @@ public class MultiplicationServiceImplTest {
 
         assertThat(randomMultiplication.getFactorA()).isEqualTo(50);
         assertThat(randomMultiplication.getFactorB()).isEqualTo(30);
-        assertThat(randomMultiplication.getResult()).isEqualTo(1500);
+    }
+
+    @Test
+    public void checkCorrectAttemptTest() {
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+
+        boolean attemptResult = multiplicationService.checkAttempt(attempt);
+
+        assertThat(attemptResult).isTrue();
+    }
+
+    @Test
+    public void checkWrongAttemptTest() {
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+
+        boolean attemptResult = multiplicationService.checkAttempt(attempt);
+
+        assertThat(attemptResult).isFalse();
     }
 }
