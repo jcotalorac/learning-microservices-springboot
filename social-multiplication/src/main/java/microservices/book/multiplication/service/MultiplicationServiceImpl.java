@@ -26,6 +26,12 @@ public class MultiplicationServiceImpl implements MultiplicationService {
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
         int product = multiplicationResultAttempt.getMultiplication().getFactorA()
                 * multiplicationResultAttempt.getMultiplication().getFactorB();
-        return multiplicationResultAttempt.getResultAttempt() == product;
+
+        boolean correct = multiplicationResultAttempt.getResultAttempt() == product;
+
+        MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(multiplicationResultAttempt.getUser(),
+                multiplicationResultAttempt.getMultiplication(), multiplicationResultAttempt.getResultAttempt(),
+                correct);
+        return correct;
     }
 }
