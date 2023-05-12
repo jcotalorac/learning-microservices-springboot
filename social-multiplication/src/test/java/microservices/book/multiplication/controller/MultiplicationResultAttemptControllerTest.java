@@ -30,7 +30,7 @@ public class MultiplicationResultAttemptControllerTest {
     private MultiplicationService multiplicationService;
 
     private JacksonTester<MultiplicationResultAttempt> jsonResult;
-    private JacksonTester<MultiplicationResultAttemptController.ResultResponse> jsonResponse;
+    private JacksonTester<MultiplicationResultAttempt> jsonResponse;
 
     @BeforeAll
     public void setUp() {
@@ -68,7 +68,8 @@ public class MultiplicationResultAttemptControllerTest {
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
         assertThat(response.getContentAsString())
                 .isEqualTo(jsonResponse
-                        .write(new MultiplicationResultAttemptController.ResultResponse(correct))
+                        .write(new MultiplicationResultAttempt(attempt.getUser(), attempt.getMultiplication(),
+                                attempt.getResultAttempt(), correct))
                         .getJson());
     }
 }
