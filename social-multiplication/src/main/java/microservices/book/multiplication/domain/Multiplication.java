@@ -1,6 +1,7 @@
 package microservices.book.multiplication.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import lombok.ToString;
 public final class Multiplication {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private final int factorA;
