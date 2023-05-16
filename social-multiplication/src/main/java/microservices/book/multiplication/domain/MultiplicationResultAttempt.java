@@ -1,8 +1,6 @@
 package microservices.book.multiplication.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +17,9 @@ public final class MultiplicationResultAttempt {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne
     private final User user;
+    @ManyToOne
     private final Multiplication multiplication;
     private final int resultAttempt;
     private final boolean correct;
