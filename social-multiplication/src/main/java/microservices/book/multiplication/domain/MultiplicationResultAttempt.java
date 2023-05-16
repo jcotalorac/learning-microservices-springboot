@@ -17,9 +17,9 @@ public final class MultiplicationResultAttempt {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private final User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private final Multiplication multiplication;
     private final int resultAttempt;
     private final boolean correct;
