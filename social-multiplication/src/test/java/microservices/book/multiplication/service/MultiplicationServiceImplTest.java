@@ -26,7 +26,7 @@ public class MultiplicationServiceImplTest {
     }
 
     @Test
-    public void createRandomMultiplication() {
+    public void createRandomMultiplicationTest() {
 
         given(randomGeneratorService.generateRandomFactor())
                 .willReturn(50, 30);
