@@ -3,6 +3,7 @@ package microservices.book.multiplication.service;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
+import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,12 +12,16 @@ import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MultiplicationServiceImplTest {
 
     @Mock
     private RandomGeneratorService randomGeneratorService;
+
+    @Mock
+    private MultiplicationResultAttemptRepository multiplicationResultAttemptRepository;
     private MultiplicationServiceImpl multiplicationService;
 
     @BeforeAll
