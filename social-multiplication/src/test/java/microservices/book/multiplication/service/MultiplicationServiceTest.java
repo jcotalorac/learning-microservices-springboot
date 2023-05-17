@@ -3,6 +3,7 @@ package microservices.book.multiplication.service;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
+import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,8 @@ public class MultiplicationServiceTest {
 
     @MockBean
     private RandomGeneratorService randomGeneratorService;
+    @MockBean
+    private MultiplicationResultAttemptRepository multiplicationResultAttemptRepository;
     @Autowired
     private MultiplicationService multiplicationService;
 
