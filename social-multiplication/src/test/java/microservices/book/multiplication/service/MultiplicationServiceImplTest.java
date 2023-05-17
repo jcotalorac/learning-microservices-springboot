@@ -49,11 +49,12 @@ public class MultiplicationServiceImplTest {
         Multiplication multiplication = new Multiplication(50, 60);
         User user = new User("john_doe");
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000, false);
+        MultiplicationResultAttempt verifiedAttempt = new MultiplicationResultAttempt(user, multiplication, 3000, true);
 
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isTrue();
-        verify(multiplicationResultAttemptRepository).save(attempt);
+        verify(multiplicationResultAttemptRepository).save(verifiedAttempt);
     }
 
     @Test
