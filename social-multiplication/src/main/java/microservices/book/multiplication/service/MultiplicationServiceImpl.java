@@ -40,6 +40,8 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(multiplicationResultAttempt.getUser(),
                 multiplicationResultAttempt.getMultiplication(), multiplicationResultAttempt.getResultAttempt(),
                 correct);
+
+        multiplicationResultAttemptRepository.save(checkedAttempt);
         return correct;
     }
 }
