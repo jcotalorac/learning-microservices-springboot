@@ -53,6 +53,7 @@ public class MultiplicationServiceImplTest {
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isTrue();
+        verify(multiplicationResultAttemptRepository).save(attempt);
     }
 
     @Test
