@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 public class MultiplicationServiceTest {
@@ -40,10 +41,12 @@ public class MultiplicationServiceTest {
         Multiplication multiplication = new Multiplication(50, 60);
         User user = new User("john_doe");
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000, false);
+        MultiplicationResultAttempt verifiedAttempt = new MultiplicationResultAttempt(user, multiplication, 3000, true);
 
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isTrue();
+        verify(multiplicationResultAttemptRepository).save(verifiedAttempt);
     }
 
     @Test
@@ -56,6 +59,7 @@ public class MultiplicationServiceTest {
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isFalse();
+        verify(multiplicationResultAttemptRepository).save(attempt);
     }
 
 }
