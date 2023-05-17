@@ -27,7 +27,8 @@ public class MultiplicationServiceImplTest {
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        multiplicationService = new MultiplicationServiceImpl(randomGeneratorService);
+        multiplicationService = new MultiplicationServiceImpl(randomGeneratorService,
+                multiplicationResultAttemptRepository);
     }
 
     @Test

@@ -2,6 +2,7 @@ package microservices.book.multiplication.service;
 
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -11,9 +12,12 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     private RandomGeneratorService randomGeneratorService;
 
+    private MultiplicationResultAttemptRepository multiplicationResultAttemptRepository;
+
     @Autowired
-    public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService) {
+    public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService, MultiplicationResultAttemptRepository multiplicationResultAttemptRepository) {
         this.randomGeneratorService = randomGeneratorService;
+        this.multiplicationResultAttemptRepository = multiplicationResultAttemptRepository;
     }
 
     @Override
