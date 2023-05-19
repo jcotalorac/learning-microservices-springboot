@@ -70,6 +70,8 @@ public class MultiplicationServiceImplTest {
         User user = new User("john_doe");
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010, false);
 
+        given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
+
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isFalse();
