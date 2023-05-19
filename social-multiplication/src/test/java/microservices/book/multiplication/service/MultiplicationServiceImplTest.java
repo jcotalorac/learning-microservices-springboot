@@ -32,7 +32,7 @@ public class MultiplicationServiceImplTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         multiplicationService = new MultiplicationServiceImpl(randomGeneratorService,
-                multiplicationResultAttemptRepository);
+                multiplicationResultAttemptRepository, userRepository);
     }
 
     @Test
