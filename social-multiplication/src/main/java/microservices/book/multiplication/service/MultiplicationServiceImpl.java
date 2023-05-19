@@ -49,7 +49,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         Assert.isTrue(!multiplicationResultAttempt.isCorrect(), "You can't send an attempt " +
                 "marked as correct!!");
 
-        MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(multiplicationResultAttempt.getUser(),
+        MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(user.orElse(multiplicationResultAttempt.getUser()),
                 multiplicationResultAttempt.getMultiplication(), multiplicationResultAttempt.getResultAttempt(),
                 correct);
 
