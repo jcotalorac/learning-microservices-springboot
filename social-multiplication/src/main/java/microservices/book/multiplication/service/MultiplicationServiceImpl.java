@@ -2,11 +2,14 @@ package microservices.book.multiplication.service;
 
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.multiplication.domain.User;
 import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import microservices.book.multiplication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+
+import java.util.Optional;
 
 @Service
 public class MultiplicationServiceImpl implements MultiplicationService {
@@ -35,6 +38,9 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
+
+        Optional<User> user = userRepository.findByAlias(multiplicationResultAttempt.getUser().getAlias());
+
         int product = multiplicationResultAttempt.getMultiplication().getFactorA()
                 * multiplicationResultAttempt.getMultiplication().getFactorB();
 
