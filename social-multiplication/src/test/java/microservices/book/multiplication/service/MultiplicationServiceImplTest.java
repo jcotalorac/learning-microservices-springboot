@@ -91,5 +91,8 @@ public class MultiplicationServiceImplTest {
         List<MultiplicationResultAttempt> latestAttempts = List.of(attempt1, attempt2);
 
         given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
+
+        given(multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc("john_doe"))
+                .willReturn(latestAttempts);
     }
 }
