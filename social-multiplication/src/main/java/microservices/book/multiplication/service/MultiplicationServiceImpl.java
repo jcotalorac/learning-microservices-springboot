@@ -60,6 +60,6 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     public List<MultiplicationResultAttempt> getStatsForUser(String userAlias) {
-        return null;
+        return multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
     }
 }
