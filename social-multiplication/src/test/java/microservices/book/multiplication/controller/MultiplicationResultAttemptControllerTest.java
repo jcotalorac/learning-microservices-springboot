@@ -17,6 +17,8 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -51,7 +53,14 @@ public class MultiplicationResultAttemptControllerTest {
     }
 
     @Test
-    public void getUserStats(){}
+    public void getUserStats(){
+
+        User user = new User("john_doe");
+        Multiplication multiplication = new Multiplication(50, 70);
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication,
+                3500, true);
+        List<MultiplicationResultAttempt> recentAttempts = List.of(attempt, attempt);
+    }
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
 
