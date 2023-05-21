@@ -17,6 +17,21 @@ function updateStats(String alias) {
         $('#stats-body').empty();
 
         data.forEach(function(row){
+            $('#stats-body')
+                .append('<tr>')
+                    .append('<td>')
+                        .append(row.id)
+                    .append('</td>')
+                    .append('<td>')
+                        .append(row.multiplication.factorA + ' x ' + row.multiplication.factorB)
+                    .append('</td>')
+                    .append('<td>')
+                        .append(row.resultAttempt)
+                    .append('</td>')
+                    .append('<td>')
+                        .append((row.correct == true ? 'YES': 'NO'))
+                    .append('</td>')
+                .append('</tr>');
         });
     });
 }
