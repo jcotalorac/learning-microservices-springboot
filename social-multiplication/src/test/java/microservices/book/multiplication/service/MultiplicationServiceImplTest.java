@@ -11,6 +11,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -79,5 +80,14 @@ public class MultiplicationServiceImplTest {
     }
 
     @Test
-    public void retrieveStatsTest() {}
+    public void retrieveStatsTest() {
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt1 = new MultiplicationResultAttempt(user, multiplication,
+                3010, false);
+        MultiplicationResultAttempt attempt2 = new MultiplicationResultAttempt(user, multiplication,
+                3051, false);
+        List<MultiplicationResultAttempt> latestAttempts = List.of(attempt1, attempt2);
+    }
 }
