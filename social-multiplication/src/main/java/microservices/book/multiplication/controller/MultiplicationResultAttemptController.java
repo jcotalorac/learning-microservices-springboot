@@ -31,8 +31,8 @@ public final class MultiplicationResultAttemptController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MultiplicationResultAttempt>> getStatistics() {
-        return null;
+    public ResponseEntity<List<MultiplicationResultAttempt>> getStatistics(@RequestParam("alias") String alias) {
+        return ResponseEntity.ok(multiplicationService.getStatsForUser(alias));
     }
 
     @RequiredArgsConstructor
