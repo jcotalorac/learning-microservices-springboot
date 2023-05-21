@@ -96,5 +96,7 @@ public class MultiplicationServiceImplTest {
                 .willReturn(latestAttempts);
 
         List<MultiplicationResultAttempt> latestAttemptsResult = multiplicationService.getStatsForUser("john_doe");
+
+        assertThat(latestAttemptsResult).isEqualTo(latestAttempts);
     }
 }
