@@ -6,10 +6,9 @@ import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.service.MultiplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/results")
@@ -29,6 +28,11 @@ public final class MultiplicationResultAttemptController {
         MultiplicationResultAttempt resultAttempt = new MultiplicationResultAttempt(attempt.getUser(),
                 attempt.getMultiplication(), attempt.getResultAttempt(), isCorrect);
         return ResponseEntity.ok(resultAttempt);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MultiplicationResultAttempt>> getStatistics() {
+        return null;
     }
 
     @RequiredArgsConstructor
