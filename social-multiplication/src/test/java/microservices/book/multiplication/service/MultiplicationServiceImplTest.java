@@ -94,5 +94,7 @@ public class MultiplicationServiceImplTest {
 
         given(multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc("john_doe"))
                 .willReturn(latestAttempts);
+
+        List<MultiplicationResultAttempt> latestAttemptsResult = multiplicationService.getStatsForUser("john_doe");
     }
 }
