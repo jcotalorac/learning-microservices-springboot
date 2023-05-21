@@ -77,4 +77,7 @@ public class MultiplicationServiceImplTest {
         assertThat(attemptResult).isFalse();
         verify(multiplicationResultAttemptRepository).save(attempt);
     }
+
+    @Test
+    public void retrieveStatsTest() {}
 }
