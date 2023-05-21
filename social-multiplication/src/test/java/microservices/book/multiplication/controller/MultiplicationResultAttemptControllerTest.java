@@ -60,6 +60,8 @@ public class MultiplicationResultAttemptControllerTest {
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication,
                 3500, true);
         List<MultiplicationResultAttempt> recentAttempts = List.of(attempt, attempt);
+
+        given(multiplicationService.getStatsForUser("john_doe")).willReturn(recentAttempts);
     }
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
