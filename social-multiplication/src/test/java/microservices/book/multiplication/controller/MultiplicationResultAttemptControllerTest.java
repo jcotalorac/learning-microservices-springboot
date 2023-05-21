@@ -22,6 +22,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @WebMvcTest(MultiplicationResultAttemptController.class)
@@ -53,7 +54,7 @@ public class MultiplicationResultAttemptControllerTest {
     }
 
     @Test
-    public void getUserStats(){
+    public void getUserStats() throws Exception {
 
         User user = new User("john_doe");
         Multiplication multiplication = new Multiplication(50, 70);
@@ -62,6 +63,10 @@ public class MultiplicationResultAttemptControllerTest {
         List<MultiplicationResultAttempt> recentAttempts = List.of(attempt, attempt);
 
         given(multiplicationService.getStatsForUser("john_doe")).willReturn(recentAttempts);
+
+        MockHttpServletResponse response = mockMvc.perform(get("/results")
+                .param("alias", "john_doe"))
+                .andReturn().getResponse();
     }
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
