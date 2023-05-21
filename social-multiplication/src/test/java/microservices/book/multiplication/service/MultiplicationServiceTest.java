@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,6 +70,27 @@ public class MultiplicationServiceTest {
 
         assertThat(attemptResult).isFalse();
         verify(multiplicationResultAttemptRepository).save(attempt);
+    }
+
+    @Test
+    public void retrieveStatsTest() {
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt1 = new MultiplicationResultAttempt(user, multiplication,
+                3010, false);
+        MultiplicationResultAttempt attempt2 = new MultiplicationResultAttempt(user, multiplication,
+                3051, false);
+        List<MultiplicationResultAttempt> latestAttempts = List.of(attempt1, attempt2);
+
+        given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
+
+        given(multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc("john_doe"))
+                .willReturn(latestAttempts);
+
+        List<MultiplicationResultAttempt> latestAttemptsResult = multiplicationService.getStatsForUser("john_doe");
+
+        assertThat(latestAttemptsResult).isEqualTo(latestAttempts);
     }
 
 }
