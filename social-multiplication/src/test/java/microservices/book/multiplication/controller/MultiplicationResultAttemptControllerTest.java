@@ -67,6 +67,8 @@ public class MultiplicationResultAttemptControllerTest {
         MockHttpServletResponse response = mockMvc.perform(get("/results")
                 .param("alias", "john_doe"))
                 .andReturn().getResponse();
+
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
