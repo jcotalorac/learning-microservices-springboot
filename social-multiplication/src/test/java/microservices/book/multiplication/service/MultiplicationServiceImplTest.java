@@ -89,5 +89,7 @@ public class MultiplicationServiceImplTest {
         MultiplicationResultAttempt attempt2 = new MultiplicationResultAttempt(user, multiplication,
                 3051, false);
         List<MultiplicationResultAttempt> latestAttempts = List.of(attempt1, attempt2);
+
+        given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
     }
 }
