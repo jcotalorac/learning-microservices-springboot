@@ -4,10 +4,13 @@ import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
 import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
+import microservices.book.multiplication.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -20,6 +23,8 @@ public class MultiplicationServiceTest {
     private RandomGeneratorService randomGeneratorService;
     @MockBean
     private MultiplicationResultAttemptRepository multiplicationResultAttemptRepository;
+    @MockBean
+    private UserRepository userRepository;
     @Autowired
     private MultiplicationService multiplicationService;
 
@@ -43,6 +48,8 @@ public class MultiplicationServiceTest {
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3000, false);
         MultiplicationResultAttempt verifiedAttempt = new MultiplicationResultAttempt(user, multiplication, 3000, true);
 
+        given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
+
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
         assertThat(attemptResult).isTrue();
@@ -55,6 +62,8 @@ public class MultiplicationServiceTest {
         Multiplication multiplication = new Multiplication(50, 60);
         User user = new User("john_doe");
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication, 3010, false);
+
+        given(userRepository.findByAlias("john_doe")).willReturn(Optional.empty());
 
         boolean attemptResult = multiplicationService.checkAttempt(attempt);
 
