@@ -14,6 +14,7 @@ function updateStats(String alias) {
     $.ajax({
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
+        $('#stats-body').empty();
     });
 }
 
