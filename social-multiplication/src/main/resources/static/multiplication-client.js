@@ -15,6 +15,9 @@ function updateStats(String alias) {
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
         $('#stats-body').empty();
+
+        data.forEach(function(row){
+        });
     });
 }
 
