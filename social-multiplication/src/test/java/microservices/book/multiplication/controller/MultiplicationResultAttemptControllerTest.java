@@ -35,6 +35,8 @@ public class MultiplicationResultAttemptControllerTest {
     private JacksonTester<MultiplicationResultAttempt> jsonResult;
     private JacksonTester<MultiplicationResultAttempt> jsonResponse;
 
+    private JacksonTester<List<MultiplicationResultAttempt>> jsonResultAttemptList;
+
     @BeforeAll
     public void setUp() {
         JacksonTester.initFields(this, new ObjectMapper());
@@ -69,6 +71,7 @@ public class MultiplicationResultAttemptControllerTest {
                 .andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString()).isEqualTo(jsonResultAttemptList.write(recentAttempts).getJson());
     }
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
