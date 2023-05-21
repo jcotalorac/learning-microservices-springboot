@@ -50,6 +50,9 @@ public class MultiplicationResultAttemptControllerTest {
         genericParameterizedTest(false);
     }
 
+    @Test
+    public void getUserStats(){}
+
     private void genericParameterizedTest(final boolean correct) throws Exception {
 
         given(multiplicationService.checkAttempt(any(MultiplicationResultAttempt.class)))
