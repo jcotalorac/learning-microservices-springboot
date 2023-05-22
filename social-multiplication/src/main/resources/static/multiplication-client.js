@@ -18,20 +18,12 @@ function updateStats(alias) {
 
         data.forEach(function(row){
             $('#stats-body')
-                .append('<tr>')
-                    .append('<td>')
-                        .append(row.id)
-                    .append('</td>')
-                    .append('<td>')
-                        .append(row.multiplication.factorA + ' x ' + row.multiplication.factorB)
-                    .append('</td>')
-                    .append('<td>')
-                        .append(row.resultAttempt)
-                    .append('</td>')
-                    .append('<td>')
-                        .append((row.correct == true ? 'YES': 'NO'))
-                    .append('</td>')
-                .append('</tr>');
+                .append('<tr>' +
+                '<td>' + row.id + '</td>' +
+                '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
+                '<td>' + row.resultAttempt + '</td>' +
+                '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
+                '</tr>');
         });
     });
 }
