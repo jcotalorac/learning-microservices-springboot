@@ -10,7 +10,7 @@ function updateMultiplication() {
     });
 }
 
-function updateStats(String alias) {
+function updateStats(alias) {
     $.ajax({
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
