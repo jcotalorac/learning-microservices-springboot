@@ -75,5 +75,6 @@ $(document).ready(function(){
             }
         });
         updateMultiplication();
+        updateStats(userAlias);
     });
 });
