@@ -18,6 +18,7 @@ public class RabbitMQConfiguration {
 
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+        rabbitTemplate.setMessageConverter(producerJackson2JsonMessageConverter());
         return rabbitTemplate;
     }
 
