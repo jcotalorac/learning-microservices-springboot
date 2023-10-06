@@ -4,6 +4,7 @@ import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
 import microservices.book.multiplication.event.EventDispatcher;
+import microservices.book.multiplication.event.MultiplicationSolvedEvent;
 import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import microservices.book.multiplication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,9 @@ public class MultiplicationServiceImpl implements MultiplicationService {
                 correct);
 
         multiplicationResultAttemptRepository.save(checkedAttempt);
+
+        eventDispatcher.send(new MultiplicationSolvedEvent(checkedAttempt.getId(),
+                checkedAttempt.getId(), checkedAttempt.isCorrect()));
         return correct;
     }
 
