@@ -16,6 +16,7 @@ public class RabbitMQConfiguration {
         return new TopicExchange(exchangeName);
     }
 
+    @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(producerJackson2JsonMessageConverter());
