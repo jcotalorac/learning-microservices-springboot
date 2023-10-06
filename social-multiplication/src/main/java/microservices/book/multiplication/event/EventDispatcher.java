@@ -19,6 +19,7 @@ public class EventDispatcher {
         this.multiplicationSolvedRoutingKey = multiplicationSolvedRoutingKey;
     }
 
-    public void send() {
+    public void send(final MultiplicationSolvedEvent multiplicationSolvedEvent) {
+        rabbitTemplate.convertAndSend(multiplicationExchange, multiplicationSolvedRoutingKey, multiplicationSolvedEvent);
     }
 }
