@@ -18,4 +18,7 @@ public class EventDispatcher {
         this.multiplicationExchange = multiplicationExchange;
         this.multiplicationSolvedRoutingKey = multiplicationSolvedRoutingKey;
     }
+
+    public void send() {
+    }
 }
