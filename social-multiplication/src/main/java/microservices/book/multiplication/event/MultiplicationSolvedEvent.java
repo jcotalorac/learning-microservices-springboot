@@ -1,6 +1,8 @@
 package microservices.book.multiplication.event;
 
-public class MultiplicationSolvedEvent {
+import java.io.Serializable;
+
+public class MultiplicationSolvedEvent implements Serializable {
 
     private final Long multiplicationResultAttemptId;
     private final Long userId;
