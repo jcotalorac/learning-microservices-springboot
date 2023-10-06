@@ -1,5 +1,6 @@
 package microservices.book.multiplication.service;
 
+import jakarta.transaction.Transactional;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
@@ -43,6 +44,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         return new Multiplication(factorA, factorB);
     }
 
+    @Transactional
     @Override
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
 
