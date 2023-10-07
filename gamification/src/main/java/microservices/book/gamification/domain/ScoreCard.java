@@ -30,4 +30,8 @@ public final class ScoreCard {
     private final long scoreTimestamp;
     @Column(name = "SCORE")
     private final int score;
+
+    public ScoreCard() {
+        this(null, null, null, 0, 0);
+    }
 }
