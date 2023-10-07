@@ -1,2 +1,4 @@
-package microservices.book.gamification.domain;public class BadgeCard {
+package microservices.book.gamification.domain;
+
+public final class BadgeCard {
 }
