@@ -22,8 +22,12 @@ public final class ScoreCard {
     @GeneratedValue
     @Column(name = "CARD_ID")
     private final Long cardId;
+    @Column(name = "USER_ID")
     private final Long userId;
+    @Column(name = "ATTEMPT_ID")
     private final Long attemptId;
+    @Column(name = "SCORE_TS")
     private final long scoreTimestamp;
+    @Column(name = "SCORE")
     private final int score;
 }
