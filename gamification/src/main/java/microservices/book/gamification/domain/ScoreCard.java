@@ -1,6 +1,9 @@
 package microservices.book.gamification.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +18,9 @@ public final class ScoreCard {
 
     private static final int DEFAULT_SCORE = 10;
 
+    @Id
+    @GeneratedValue
+    @Column(name = "CARD_ID")
     private final Long cardId;
     private final Long userId;
     private final Long attemptId;
