@@ -23,4 +23,8 @@ public final class BadgeCard {
     private final Long userId;
     private final long badgeTimestamp;
     private final Badge badge;
+
+    public BadgeCard() {
+        this(null, null, 0, null);
+    }
 }
