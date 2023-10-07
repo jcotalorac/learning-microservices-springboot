@@ -1,5 +1,6 @@
 package microservices.book.gamification.domain;
 
+import jakarta.persistence.Entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @EqualsAndHashCode
+@Entity
 public final class BadgeCard {
 
     private final Long badgeId;
