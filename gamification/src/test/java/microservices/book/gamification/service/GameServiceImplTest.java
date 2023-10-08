@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameServiceImplTest {
 
+    private GameServiceImpl gameService;
+
     @Test
     public void newAttemptForUser() {
     }
