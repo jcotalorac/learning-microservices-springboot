@@ -1,4 +1,4 @@
 package microservices.book.gamification.domain;
 
-public class GameStats {
+public final class GameStats {
 }
