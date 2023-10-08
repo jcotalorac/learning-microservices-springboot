@@ -1,9 +1,13 @@
 package microservices.book.gamification.repository;
 
 import microservices.book.gamification.domain.ScoreCard;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
 
-    int getTotalScoreForUser(final Long userId);
+    @Query("SELECT SUM(s.score) FROM microservices.book.gamification.domain.ScoreCard s " +
+            "WHERE s.userId = :userId GROUP BY s.userId")
+    int getTotalScoreForUser(@Param("userId") final Long userId);
 }
