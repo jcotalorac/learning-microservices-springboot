@@ -13,4 +13,8 @@ public final class LeaderBoardRow {
 
     private final Long userId;
     private final Long totalScore;
+
+    public LeaderBoardRow() {
+        this(0L, 0L);
+    }
 }
