@@ -28,4 +28,8 @@ public final class GameStats {
     public static GameStats emptyStats(final Long userId) {
         return new GameStats(userId, 0, Collections.emptyList());
     }
+
+    public List<Badge> getBadges() {
+        return Collections.unmodifiableList(badges);
+    }
 }
