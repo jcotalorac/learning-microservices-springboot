@@ -8,6 +8,10 @@ class GameServiceImplTest {
 
     private GameServiceImpl gameService;
 
+    public void setUp() {
+        gameService = new GameServiceImpl();
+    }
+
     @Test
     public void newAttemptForUser() {
     }
