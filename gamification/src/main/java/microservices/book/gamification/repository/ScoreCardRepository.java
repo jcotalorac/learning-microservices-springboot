@@ -19,4 +19,6 @@ public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
             "GROUP BY s.userId" +
             "ORDER BY SUM(s.score) DESC")
     List<LeaderBoardRow> findFirst10();
+
+    List<ScoreCard> findByUserIdOrderByScoreTimestampDesc(final Long userId);
 }
