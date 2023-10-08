@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameServiceImplTest {
 
     @Test
-    void newAttemptForUser() {
+    public void newAttemptForUser() {
     }
 
     @Test
-    void retrieveStatsForUser() {
+    public void retrieveStatsForUser() {
     }
 }
