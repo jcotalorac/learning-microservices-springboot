@@ -1,9 +1,13 @@
 package microservices.book.gamification.service;
 
+import microservices.book.gamification.domain.GameStats;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-class GameServiceImplTest {
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class GameServiceImplTest {
 
     private GameServiceImpl gameService;
 
