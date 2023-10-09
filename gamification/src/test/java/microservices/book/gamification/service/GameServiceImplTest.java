@@ -2,8 +2,6 @@ package microservices.book.gamification.service;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class GameServiceImplTest {
 
     private GameServiceImpl gameService;
@@ -14,6 +12,9 @@ class GameServiceImplTest {
 
     @Test
     public void processFirstCorrectAttemptTest() {
+
+        Long userId = 1L;
+        Long attemptId = 8L;
     }
 
     @Test
