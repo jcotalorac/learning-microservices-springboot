@@ -13,7 +13,7 @@ class GameServiceImplTest {
     }
 
     @Test
-    public void newAttemptForUser() {
+    public void processFirstCorrectAttemptTest() {
     }
 
     @Test
