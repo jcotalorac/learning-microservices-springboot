@@ -1,5 +1,6 @@
 package microservices.book.gamification.service;
 
+import microservices.book.gamification.domain.GameStats;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -21,6 +22,8 @@ public class GameServiceImplTest {
         Long userId = 1L;
         Long attemptId = 8L;
         int totalScore = 10;
+
+        GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
     }
 
     @Test
