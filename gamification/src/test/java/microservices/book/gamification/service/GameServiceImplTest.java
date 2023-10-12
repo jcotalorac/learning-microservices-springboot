@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,6 +20,7 @@ public class GameServiceImplTest {
 
     @BeforeAll
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
         gameService = new GameServiceImpl();
     }
 
