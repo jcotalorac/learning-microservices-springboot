@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -30,6 +31,8 @@ public class GameServiceImplTest {
         Long userId = 1L;
         Long attemptId = 8L;
         int totalScore = 10;
+
+        given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
