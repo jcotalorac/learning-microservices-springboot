@@ -2,6 +2,7 @@ package microservices.book.gamification.service;
 
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.GameStats;
+import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,12 +21,14 @@ public class GameServiceImplTest {
 
     @Mock
     private ScoreCardRepository scoreCardRepository;
+    @Mock
+    private BadgeCardRepository badgeCardRepository;
     private GameServiceImpl gameService;
 
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        gameService = new GameServiceImpl(scoreCardRepository, null);
+        gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository);
     }
 
     @Test
