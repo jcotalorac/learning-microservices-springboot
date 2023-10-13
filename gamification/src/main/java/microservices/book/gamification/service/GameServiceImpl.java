@@ -14,8 +14,10 @@ public class GameServiceImpl implements GameService {
     private BadgeCardRepository badgeCardRepository;
 
     @Autowired
-    public GameServiceImpl(ScoreCardRepository scoreCardRepository) {
+    public GameServiceImpl(ScoreCardRepository scoreCardRepository,
+                           BadgeCardRepository badgeCardRepository) {
         this.scoreCardRepository = scoreCardRepository;
+        this.badgeCardRepository = badgeCardRepository;
     }
 
     @Override
