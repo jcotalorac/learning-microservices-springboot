@@ -5,9 +5,12 @@ import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class GameServiceImpl implements GameService {
+    private ScoreCardRepository scoreCardRepository;
 
     @Autowired
-    private ScoreCardRepository scoreCardRepository;
+    public GameServiceImpl(ScoreCardRepository scoreCardRepository) {
+        this.scoreCardRepository = scoreCardRepository;
+    }
 
     @Override
     public GameStats newAttemptForUser(Long userId, Long attemptId, boolean correct) {

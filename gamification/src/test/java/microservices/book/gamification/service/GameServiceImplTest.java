@@ -21,7 +21,7 @@ public class GameServiceImplTest {
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        gameService = new GameServiceImpl();
+        gameService = new GameServiceImpl(scoreCardRepository);
     }
 
     @Test
