@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -39,6 +40,8 @@ public class GameServiceImplTest {
         int totalScore = 10;
 
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
+        given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
+                .willReturn(List.of(Badge.FIRST_WON));
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
