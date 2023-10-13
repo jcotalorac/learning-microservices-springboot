@@ -1,8 +1,11 @@
 package microservices.book.gamification.service;
 
+import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
 
 public class GameServiceImpl implements GameService {
     private ScoreCardRepository scoreCardRepository;
@@ -15,7 +18,9 @@ public class GameServiceImpl implements GameService {
     @Override
     public GameStats newAttemptForUser(Long userId, Long attemptId, boolean correct) {
         int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
-        return new GameStats(userId, totalScoreForUser, null);
+        ArrayList<Badge> badges = new ArrayList<>();
+        badges.add(Badge.FIRST_WON);
+        return new GameStats(userId, totalScoreForUser, badges);
     }
 
     @Override
