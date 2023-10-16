@@ -50,6 +50,19 @@ public class GameServiceImplTest {
     }
 
     @Test
+    public void processWrongAttemptTest() {
+
+        Long userId = 1L;
+        Long attemptId = 8L;
+        int totalScore = 0;
+
+        GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, false);
+
+        assertThat(gameIteration.getScore()).isEqualTo(totalScore);
+        assertThat(gameIteration.getBadges()).isEmpty();
+    }
+
+    @Test
     public void retrieveStatsForUser() {
     }
 }
