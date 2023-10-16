@@ -54,8 +54,8 @@ public class GameServiceImplTest {
     @Test
     public void processWrongAttemptTest() {
 
-        Long userId = 1L;
-        Long attemptId = 8L;
+        Long userId = 2L;
+        Long attemptId = 9L;
         int totalScore = 0;
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, false);
