@@ -15,6 +15,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -60,6 +62,9 @@ public class GameServiceImplTest {
 
         assertThat(gameIteration.getScore()).isEqualTo(totalScore);
         assertThat(gameIteration.getBadges()).isEmpty();
+
+        verify(scoreCardRepository, never()).getTotalScoreForUser(userId);
+        verify(badgeCardRepository, never()).findByUserIdOrderByBadgeTimestampDesc(userId);
     }
 
     @Test
