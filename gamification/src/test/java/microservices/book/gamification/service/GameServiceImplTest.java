@@ -68,6 +68,6 @@ public class GameServiceImplTest {
     }
 
     @Test
-    public void retrieveStatsForUser() {
+    public void retrieveStatsForUserTest() {
     }
 }
