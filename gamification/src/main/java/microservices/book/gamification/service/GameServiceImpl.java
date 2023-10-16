@@ -22,9 +22,12 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameStats newAttemptForUser(Long userId, Long attemptId, boolean correct) {
-        int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
-        List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
-        return new GameStats(userId, totalScoreForUser, badges);
+        if (correct) {
+            int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
+            List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+            return new GameStats(userId, totalScoreForUser, badges);
+        }
+        return GameStats.emptyStats(userId);
     }
 
     @Override
