@@ -2,6 +2,7 @@ package microservices.book.gamification.service;
 
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.GameStats;
+import microservices.book.gamification.domain.ScoreCard;
 import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class GameServiceImpl implements GameService {
     @Override
     public GameStats newAttemptForUser(Long userId, Long attemptId, boolean correct) {
         if (correct) {
+            ScoreCard scoreCard = new ScoreCard(userId, attemptId);
+            scoreCardRepository.save(scoreCard);
             int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
             List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
             return new GameStats(userId, totalScoreForUser, badges);
