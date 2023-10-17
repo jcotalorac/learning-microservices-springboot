@@ -73,5 +73,7 @@ public class GameServiceImplTest {
         Long userId = 3L;
 
         GameStats gameStats = gameService.retrieveStatsForUser(userId);
+
+        assertThat(gameStats.getUserId()).isEqualTo(userId);
     }
 }
