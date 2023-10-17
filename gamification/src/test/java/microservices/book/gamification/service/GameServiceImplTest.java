@@ -69,5 +69,7 @@ public class GameServiceImplTest {
 
     @Test
     public void retrieveStatsForUserTest() {
+
+        Long userId = 3L;
     }
 }
