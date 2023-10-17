@@ -1,5 +1,6 @@
 package microservices.book.gamification.service;
 
+import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.domain.ScoreCard;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class GameServiceImpl implements GameService {
     private ScoreCardRepository scoreCardRepository;
     private BadgeCardRepository badgeCardRepository;
@@ -26,6 +28,8 @@ public class GameServiceImpl implements GameService {
         if (correct) {
             ScoreCard scoreCard = new ScoreCard(userId, attemptId);
             scoreCardRepository.save(scoreCard);
+            log.info("User with id {} scored {} points for attempt id {}", userId,
+                    scoreCard.getScore(), attemptId);
             int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
             List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
             return new GameStats(userId, totalScoreForUser, badges);
