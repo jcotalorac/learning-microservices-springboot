@@ -38,7 +38,9 @@ public class GameServiceImpl implements GameService {
     private List<Badge> processForBadges(Long userId) {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
-        return badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+
+        List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+        return badges;
     }
 
     @Override
