@@ -71,5 +71,7 @@ public class GameServiceImplTest {
     public void retrieveStatsForUserTest() {
 
         Long userId = 3L;
+
+        GameStats gameStats = gameService.retrieveStatsForUser(userId);
     }
 }
