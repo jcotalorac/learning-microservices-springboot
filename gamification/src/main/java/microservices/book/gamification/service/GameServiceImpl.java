@@ -32,6 +32,6 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameStats retrieveStatsForUser(Long userId) {
-        return null;
+        return GameStats.emptyStats(userId);
     }
 }
