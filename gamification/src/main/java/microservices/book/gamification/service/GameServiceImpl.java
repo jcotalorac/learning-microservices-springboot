@@ -8,7 +8,6 @@ import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -31,10 +30,14 @@ public class GameServiceImpl implements GameService {
             log.info("User with id {} scored {} points for attempt id {}", userId,
                     scoreCard.getScore(), attemptId);
             int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
-            List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+            List<Badge> badges = processForBadges(userId);
             return new GameStats(userId, totalScoreForUser, badges);
         }
         return GameStats.emptyStats(userId);
+    }
+
+    private List<Badge> processForBadges(Long userId) {
+        return badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
     }
 
     @Override
