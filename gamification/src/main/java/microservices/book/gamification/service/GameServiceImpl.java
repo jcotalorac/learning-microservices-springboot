@@ -29,9 +29,8 @@ public class GameServiceImpl implements GameService {
             scoreCardRepository.save(scoreCard);
             log.info("User with id {} scored {} points for attempt id {}", userId,
                     scoreCard.getScore(), attemptId);
-            int totalScoreForUser = scoreCardRepository.getTotalScoreForUser(userId);
             List<Badge> badges = processForBadges(userId);
-            return new GameStats(userId, totalScoreForUser, badges);
+            return new GameStats(userId, scoreCard.getScore(), badges);
         }
         return GameStats.emptyStats(userId);
     }
