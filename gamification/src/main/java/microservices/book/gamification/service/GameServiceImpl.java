@@ -41,11 +41,11 @@ public class GameServiceImpl implements GameService {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
 
-        List<BadgeCard> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+        List<BadgeCard> badgeCards = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
 
-        checkAndGiveBadgeBasedOnScore(badges, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
+        checkAndGiveBadgeBasedOnScore(badgeCards, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
                 userId);
-        return badges;
+        return badgeCards;
     }
 
     private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(List<BadgeCard> badges, Badge badge,
