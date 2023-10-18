@@ -9,6 +9,7 @@ import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 public class GameServiceImpl implements GameService {
@@ -40,7 +41,16 @@ public class GameServiceImpl implements GameService {
         log.info("New score for user {} is {}", userId, totalScore);
 
         List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+
+        checkAndGiveBadgeBasedOnScore(badges, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
+                userId);
         return badges;
+    }
+
+    private Optional<Badge> checkAndGiveBadgeBasedOnScore(List<Badge> badges, Badge badge,
+                                                          int score, int scoreThreshold,
+                                                          Long userId) {
+        return null;
     }
 
     @Override
