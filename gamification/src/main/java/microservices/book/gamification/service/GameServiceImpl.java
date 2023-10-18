@@ -2,6 +2,7 @@ package microservices.book.gamification.service;
 
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.domain.Badge;
+import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.domain.ScoreCard;
 import microservices.book.gamification.repository.BadgeCardRepository;
@@ -30,26 +31,26 @@ public class GameServiceImpl implements GameService {
             scoreCardRepository.save(scoreCard);
             log.info("User with id {} scored {} points for attempt id {}", userId,
                     scoreCard.getScore(), attemptId);
-            List<Badge> badges = processForBadges(userId);
-            return new GameStats(userId, scoreCard.getScore(), badges);
+            List<BadgeCard> badges = processForBadges(userId);
+            return new GameStats(userId, scoreCard.getScore(), List.of(Badge.FIRST_WON));
         }
         return GameStats.emptyStats(userId);
     }
 
-    private List<Badge> processForBadges(Long userId) {
+    private List<BadgeCard> processForBadges(Long userId) {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
 
-        List<Badge> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+        List<BadgeCard> badges = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
 
         checkAndGiveBadgeBasedOnScore(badges, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
                 userId);
         return badges;
     }
 
-    private Optional<Badge> checkAndGiveBadgeBasedOnScore(List<Badge> badges, Badge badge,
-                                                          int score, int scoreThreshold,
-                                                          Long userId) {
+    private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(List<BadgeCard> badges, Badge badge,
+                                                              int score, int scoreThreshold,
+                                                              Long userId) {
         return Optional.empty();
     }
 

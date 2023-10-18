@@ -1,6 +1,7 @@
 package microservices.book.gamification.service;
 
 import microservices.book.gamification.domain.Badge;
+import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
@@ -43,7 +44,7 @@ public class GameServiceImplTest {
 
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
-                .willReturn(List.of(Badge.FIRST_WON));
+                .willReturn(List.of(new BadgeCard()));
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
