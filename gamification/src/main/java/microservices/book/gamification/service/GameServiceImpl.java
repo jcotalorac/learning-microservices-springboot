@@ -50,7 +50,7 @@ public class GameServiceImpl implements GameService {
     private Optional<Badge> checkAndGiveBadgeBasedOnScore(List<Badge> badges, Badge badge,
                                                           int score, int scoreThreshold,
                                                           Long userId) {
-        return null;
+        return Optional.empty();
     }
 
     @Override
