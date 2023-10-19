@@ -44,7 +44,7 @@ public class GameServiceImpl implements GameService {
         List<BadgeCard> badgeCards = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
 
         checkAndGiveBadgeBasedOnScore(badgeCards, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
-                userId);
+                userId).ifPresent(badgeCards::add);
         return badgeCards;
     }
 
