@@ -52,13 +52,13 @@ public class GameServiceImpl implements GameService {
                                                               int score, int scoreThreshold,
                                                               Long userId) {
         if (score >= scoreThreshold && !badges.contains(badge)) {
-            return Optional.of(giveBadgeToUser(userId));
+            return Optional.of(giveBadgeToUser(userId, badge));
         }
         return Optional.empty();
     }
 
-    private BadgeCard giveBadgeToUser(Long userId) {
-        return new BadgeCard();
+    private BadgeCard giveBadgeToUser(Long userId, Badge badge) {
+        return new BadgeCard(userId, badge);
     }
 
     @Override
