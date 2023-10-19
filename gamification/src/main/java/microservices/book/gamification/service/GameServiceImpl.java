@@ -58,7 +58,10 @@ public class GameServiceImpl implements GameService {
     }
 
     private BadgeCard giveBadgeToUser(Long userId, Badge badge) {
-        return new BadgeCard(userId, badge);
+        BadgeCard badgeCard = new BadgeCard(userId, badge);
+        badgeCardRepository.save(badgeCard);
+        log.info("User with id {} won a new badge: {}", userId, badge);
+        return badgeCard;
     }
 
     @Override
