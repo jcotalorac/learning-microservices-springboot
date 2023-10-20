@@ -62,7 +62,8 @@ public class GameServiceImpl implements GameService {
     }
 
     private boolean containsBadge(List<BadgeCard> badgeCards, Badge badge) {
-        return badgeCards.contains(badge);
+        return badgeCards.stream()
+                .anyMatch(badgeCard -> badgeCard.getBadge().equals(badge));
     }
 
     private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(List<BadgeCard> badges, Badge badge,
