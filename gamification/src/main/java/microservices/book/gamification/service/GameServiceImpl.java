@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class GameServiceImpl implements GameService {
@@ -32,7 +33,9 @@ public class GameServiceImpl implements GameService {
             log.info("User with id {} scored {} points for attempt id {}", userId,
                     scoreCard.getScore(), attemptId);
             List<BadgeCard> badges = processForBadges(userId);
-            return new GameStats(userId, scoreCard.getScore(), List.of(Badge.FIRST_WON));
+            return new GameStats(userId, scoreCard.getScore(), badges.stream()
+                    .map(BadgeCard::getBadge)
+                    .collect(Collectors.toList()));
         }
         return GameStats.emptyStats(userId);
     }
