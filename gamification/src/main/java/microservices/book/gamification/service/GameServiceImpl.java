@@ -49,6 +49,12 @@ public class GameServiceImpl implements GameService {
                 userId).ifPresent(badgeCards::add);
         checkAndGiveBadgeBasedOnScore(badgeCards, Badge.GOLD_MULTIPLICATOR, totalScore, 999,
                 userId).ifPresent(badgeCards::add);
+
+        List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
+        if (scoreCards.size() == 1 && !badgeCards.contains(Badge.FIRST_WON)) {
+            BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
+            badgeCards.add(firstWonBadge);
+        }
         return badgeCards;
     }
 
