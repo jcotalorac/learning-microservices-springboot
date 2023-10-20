@@ -54,17 +54,21 @@ public class GameServiceImpl implements GameService {
                 userId).ifPresent(badgeCards::add);
 
         List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
-        if (scoreCards.size() == 1 && !badgeCards.contains(Badge.FIRST_WON)) {
+        if (scoreCards.size() == 1 && !containsBadge(badgeCards, Badge.FIRST_WON)) {
             BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
             badgeCards.add(firstWonBadge);
         }
         return badgeCards;
     }
 
+    private boolean containsBadge(List<BadgeCard> badgeCards, Badge badge) {
+        return badgeCards.contains(badge);
+    }
+
     private Optional<BadgeCard> checkAndGiveBadgeBasedOnScore(List<BadgeCard> badges, Badge badge,
                                                               int score, int scoreThreshold,
                                                               Long userId) {
-        if (score >= scoreThreshold && !badges.contains(badge)) {
+        if (score >= scoreThreshold && !containsBadge(badges, badge)) {
             return Optional.of(giveBadgeToUser(userId, badge));
         }
         return Optional.empty();
