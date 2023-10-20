@@ -3,6 +3,7 @@ package microservices.book.gamification.service;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
+import microservices.book.gamification.domain.ScoreCard;
 import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,6 +46,8 @@ public class GameServiceImplTest {
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of());
+        given(scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId))
+                .willReturn(List.of(new ScoreCard(userId, attemptId)));
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
