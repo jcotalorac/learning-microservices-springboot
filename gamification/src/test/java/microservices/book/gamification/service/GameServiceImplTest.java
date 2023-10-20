@@ -44,7 +44,7 @@ public class GameServiceImplTest {
 
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
-                .willReturn(List.of(new BadgeCard(userId, Badge.FIRST_WON)));
+                .willReturn(List.of());
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
