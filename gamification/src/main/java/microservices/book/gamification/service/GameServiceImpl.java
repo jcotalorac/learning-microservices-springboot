@@ -9,6 +9,7 @@ import microservices.book.gamification.repository.BadgeCardRepository;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -44,21 +45,22 @@ public class GameServiceImpl implements GameService {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
 
+        List<BadgeCard> badgeCardsAssigned = new ArrayList<>();
         List<BadgeCard> badgeCardsRetrieved = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
 
         checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
-                userId).ifPresent(badgeCardsRetrieved::add);
+                userId).ifPresent(badgeCardsAssigned::add);
         checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.SILVER_MULTIPLICATOR, totalScore, 500,
-                userId).ifPresent(badgeCardsRetrieved::add);
+                userId).ifPresent(badgeCardsAssigned::add);
         checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.GOLD_MULTIPLICATOR, totalScore, 999,
-                userId).ifPresent(badgeCardsRetrieved::add);
+                userId).ifPresent(badgeCardsAssigned::add);
 
         List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
         if (scoreCards.size() == 1 && !containsBadge(badgeCardsRetrieved, Badge.FIRST_WON)) {
             BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
-            badgeCardsRetrieved.add(firstWonBadge);
+            badgeCardsAssigned.add(firstWonBadge);
         }
-        return badgeCardsRetrieved;
+        return badgeCardsAssigned;
     }
 
     private boolean containsBadge(List<BadgeCard> badgeCards, Badge badge) {
