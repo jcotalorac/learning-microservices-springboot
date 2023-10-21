@@ -14,6 +14,9 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -65,6 +68,10 @@ public class GameServiceImplTest {
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of(new BadgeCard(userId, Badge.FIRST_WON)));
+        given(scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId))
+                .willReturn(IntStream.of(10)
+                        .mapToObj(i -> new ScoreCard(userId, (long) i))
+                        .collect(Collectors.toList()));
     }
 
     @Test
