@@ -44,21 +44,21 @@ public class GameServiceImpl implements GameService {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
 
-        List<BadgeCard> badgeCards = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
+        List<BadgeCard> badgeCardsRetrieved = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
 
-        checkAndGiveBadgeBasedOnScore(badgeCards, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
-                userId).ifPresent(badgeCards::add);
-        checkAndGiveBadgeBasedOnScore(badgeCards, Badge.SILVER_MULTIPLICATOR, totalScore, 500,
-                userId).ifPresent(badgeCards::add);
-        checkAndGiveBadgeBasedOnScore(badgeCards, Badge.GOLD_MULTIPLICATOR, totalScore, 999,
-                userId).ifPresent(badgeCards::add);
+        checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
+                userId).ifPresent(badgeCardsRetrieved::add);
+        checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.SILVER_MULTIPLICATOR, totalScore, 500,
+                userId).ifPresent(badgeCardsRetrieved::add);
+        checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.GOLD_MULTIPLICATOR, totalScore, 999,
+                userId).ifPresent(badgeCardsRetrieved::add);
 
         List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
-        if (scoreCards.size() == 1 && !containsBadge(badgeCards, Badge.FIRST_WON)) {
+        if (scoreCards.size() == 1 && !containsBadge(badgeCardsRetrieved, Badge.FIRST_WON)) {
             BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
-            badgeCards.add(firstWonBadge);
+            badgeCardsRetrieved.add(firstWonBadge);
         }
-        return badgeCards;
+        return badgeCardsRetrieved;
     }
 
     private boolean containsBadge(List<BadgeCard> badgeCards, Badge badge) {
