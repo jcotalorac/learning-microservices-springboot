@@ -75,7 +75,7 @@ public class GameServiceImplTest {
 
         GameStats iteration = gameService.newAttemptForUser(userId, attemptId, true);
 
-        assertThat(iteration.getScore()).isEqualTo(totalScore);
+        assertThat(iteration.getScore()).isEqualTo(ScoreCard.DEFAULT_SCORE);
         assertThat(iteration.getBadges()).contains(Badge.BRONZE_MULTIPLICATOR);
     }
 

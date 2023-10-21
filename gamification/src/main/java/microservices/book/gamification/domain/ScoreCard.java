@@ -16,7 +16,7 @@ import lombok.ToString;
 @Entity
 public final class ScoreCard {
 
-    private static final int DEFAULT_SCORE = 10;
+    public static final int DEFAULT_SCORE = 10;
 
     @Id
     @GeneratedValue
