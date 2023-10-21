@@ -72,6 +72,8 @@ public class GameServiceImplTest {
                 .willReturn(IntStream.of(10)
                         .mapToObj(i -> new ScoreCard(userId, (long) i))
                         .collect(Collectors.toList()));
+
+        GameStats iteration = gameService.newAttemptForUser(userId, attemptId, true);
     }
 
     @Test
