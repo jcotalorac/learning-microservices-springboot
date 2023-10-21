@@ -1,7 +1,6 @@
 package microservices.book.gamification.service;
 
 import microservices.book.gamification.domain.Badge;
-import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.domain.ScoreCard;
 import microservices.book.gamification.repository.BadgeCardRepository;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
