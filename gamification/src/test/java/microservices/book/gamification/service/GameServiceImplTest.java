@@ -69,7 +69,7 @@ public class GameServiceImplTest {
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of(new BadgeCard(userId, Badge.FIRST_WON)));
         given(scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId))
-                .willReturn(IntStream.of(10)
+                .willReturn(IntStream.range(0, 10)
                         .mapToObj(i -> new ScoreCard(userId, (long) i))
                         .collect(Collectors.toList()));
 
