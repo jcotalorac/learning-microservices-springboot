@@ -55,6 +55,10 @@ public class GameServiceImplTest {
     }
 
     @Test
+    public void processBronzeBadgeUserAchievementTest() {
+    }
+
+    @Test
     public void processWrongAttemptTest() {
 
         Long userId = 2L;
