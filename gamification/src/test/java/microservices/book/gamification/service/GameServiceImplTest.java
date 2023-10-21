@@ -74,6 +74,8 @@ public class GameServiceImplTest {
                         .collect(Collectors.toList()));
 
         GameStats iteration = gameService.newAttemptForUser(userId, attemptId, true);
+
+        assertThat(iteration.getScore()).isEqualTo(totalScore);
     }
 
     @Test
