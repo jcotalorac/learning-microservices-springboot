@@ -60,6 +60,8 @@ public class GameServiceImplTest {
         Long userId = 4L;
         Long attemptId = 6L;
         int totalScore = 100;
+
+        given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
     }
 
     @Test
