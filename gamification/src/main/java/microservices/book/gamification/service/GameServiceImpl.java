@@ -47,7 +47,6 @@ public class GameServiceImpl implements GameService {
 
         List<BadgeCard> badgeCardsAssigned = new ArrayList<>();
         List<BadgeCard> badgeCardsRetrieved = badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId);
-        List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
 
         checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.BRONZE_MULTIPLICATOR, totalScore, 100,
                 userId).ifPresent(badgeCardsAssigned::add);
@@ -55,7 +54,8 @@ public class GameServiceImpl implements GameService {
                 userId).ifPresent(badgeCardsAssigned::add);
         checkAndGiveBadgeBasedOnScore(badgeCardsRetrieved, Badge.GOLD_MULTIPLICATOR, totalScore, 999,
                 userId).ifPresent(badgeCardsAssigned::add);
-        
+
+        List<ScoreCard> scoreCards = scoreCardRepository.findByUserIdOrderByScoreTimestampDesc(userId);
         if (scoreCards.size() == 1 && !containsBadge(badgeCardsRetrieved, Badge.FIRST_WON)) {
             BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
             badgeCardsAssigned.add(firstWonBadge);
