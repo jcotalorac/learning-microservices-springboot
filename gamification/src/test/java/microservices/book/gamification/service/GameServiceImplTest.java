@@ -1,6 +1,7 @@
 package microservices.book.gamification.service;
 
 import microservices.book.gamification.domain.Badge;
+import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.domain.ScoreCard;
 import microservices.book.gamification.repository.BadgeCardRepository;
@@ -62,6 +63,8 @@ public class GameServiceImplTest {
         int totalScore = 100;
 
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
+        given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
+                .willReturn(List.of(new BadgeCard(userId, Badge.FIRST_WON)));
     }
 
     @Test
