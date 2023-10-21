@@ -56,6 +56,10 @@ public class GameServiceImplTest {
 
     @Test
     public void processBronzeBadgeUserAchievementTest() {
+
+        Long userId = 4L;
+        Long attemptId = 6L;
+        int totalScore = 100;
     }
 
     @Test
