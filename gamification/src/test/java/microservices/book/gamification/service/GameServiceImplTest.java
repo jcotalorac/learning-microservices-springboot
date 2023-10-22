@@ -108,5 +108,6 @@ public class GameServiceImplTest {
         GameStats gameStats = gameService.retrieveStatsForUser(userId);
 
         assertThat(gameStats.getScore()).isEqualTo(totalScore);
+        assertThat(gameStats.getBadges()).containsOnly(Badge.SILVER_MULTIPLICATOR);
     }
 }
