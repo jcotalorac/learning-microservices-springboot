@@ -100,6 +100,8 @@ public class GameServiceImplTest {
         Long userId = 3L;
         BadgeCard badgeCard = new BadgeCard(userId, Badge.SILVER_MULTIPLICATOR);
         given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(1000);
+        given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
+                .willReturn(List.of(badgeCard));
 
         GameStats gameStats = gameService.retrieveStatsForUser(userId);
 
