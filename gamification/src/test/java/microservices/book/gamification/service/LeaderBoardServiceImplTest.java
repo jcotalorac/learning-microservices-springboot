@@ -7,8 +7,11 @@ import org.junit.jupiter.api.TestInstance;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LeaderBoardServiceImplTest {
 
+    private LeaderBoardServiceImpl leaderBoardService;
+
     @BeforeAll
     public void setUp() {
+        leaderBoardService = new LeaderBoardServiceImpl();
     }
 
     @Test
