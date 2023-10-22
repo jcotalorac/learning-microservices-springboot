@@ -26,7 +26,7 @@ public class LeaderBoardServiceImplTest {
     @BeforeAll
     public void setUp() {
         initMocks(this);
-        leaderBoardService = new LeaderBoardServiceImpl();
+        leaderBoardService = new LeaderBoardServiceImpl(scoreCardRepository);
     }
 
     @Test
