@@ -98,13 +98,15 @@ public class GameServiceImplTest {
     public void retrieveStatsForUserTest() {
 
         Long userId = 3L;
+        int totalScore = 1000;
         BadgeCard badgeCard = new BadgeCard(userId, Badge.SILVER_MULTIPLICATOR);
-        given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(1000);
+
+        given(scoreCardRepository.getTotalScoreForUser(userId)).willReturn(totalScore);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of(badgeCard));
 
         GameStats gameStats = gameService.retrieveStatsForUser(userId);
 
-        assertThat(gameStats.getUserId()).isEqualTo(userId);
+        assertThat(gameStats.getScore()).isEqualTo(totalScore);
     }
 }
