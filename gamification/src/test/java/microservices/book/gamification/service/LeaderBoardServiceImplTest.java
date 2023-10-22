@@ -1,17 +1,17 @@
 package microservices.book.gamification.service;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class LeaderBoardServiceImplTest {
 
-class LeaderBoardServiceImplTest {
-
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    public void setUp() {
     }
 
     @Test
-    void getCurrentLeaderBoard() {
+    public void retrieveLeaderBoardTest() {
     }
 }
