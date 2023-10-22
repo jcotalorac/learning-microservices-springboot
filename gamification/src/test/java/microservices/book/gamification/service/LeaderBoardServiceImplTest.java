@@ -1,11 +1,16 @@
 package microservices.book.gamification.service;
 
+import microservices.book.gamification.domain.LeaderBoardRow;
 import microservices.book.gamification.repository.ScoreCardRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -24,5 +29,10 @@ public class LeaderBoardServiceImplTest {
 
     @Test
     public void retrieveLeaderBoardTest() {
+
+        given(scoreCardRepository.findFirst10())
+                .willReturn(IntStream.range(11, 1)
+                        .mapToObj(i -> new LeaderBoardRow((long) i, (long) (i * 10)))
+                        .collect(Collectors.toList()));
     }
 }
