@@ -98,6 +98,7 @@ public class GameServiceImplTest {
     public void retrieveStatsForUserTest() {
 
         Long userId = 3L;
+        BadgeCard badgeCard = new BadgeCard(userId, Badge.SILVER_MULTIPLICATOR);
 
         GameStats gameStats = gameService.retrieveStatsForUser(userId);
 
