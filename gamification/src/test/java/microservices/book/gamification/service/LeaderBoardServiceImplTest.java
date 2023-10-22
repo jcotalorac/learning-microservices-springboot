@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -37,5 +38,7 @@ public class LeaderBoardServiceImplTest {
                         .collect(Collectors.toList()));
 
         List<LeaderBoardRow> currentLeaderBoard = leaderBoardService.getCurrentLeaderBoard();
+
+        assertThat(currentLeaderBoard.size()).isEqualTo(10);
     }
 }
