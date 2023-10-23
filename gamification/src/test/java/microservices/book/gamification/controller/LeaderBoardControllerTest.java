@@ -1,12 +1,14 @@
 package microservices.book.gamification.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LeaderBoardControllerTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class LeaderBoardControllerTest {
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
     }
 }
