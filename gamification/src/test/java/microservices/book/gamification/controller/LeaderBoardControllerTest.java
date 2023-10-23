@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -37,5 +39,10 @@ public class LeaderBoardControllerTest {
                         .collect(Collectors.toList()));
 
         List<LeaderBoardRow> leaderBoard = leaderBoardController.getLeaderBoard();
+
+        assertThat(leaderBoard.size()).isEqualTo(10);
+        assertThat(leaderBoard).isSortedAccordingTo(Comparator
+                .comparingLong(LeaderBoardRow::getTotalScore)
+                .reversed());
     }
 }
