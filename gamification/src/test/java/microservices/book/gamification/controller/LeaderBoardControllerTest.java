@@ -8,7 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LeaderBoardControllerTest {
 
+    private LeaderBoardController leaderBoardController;
+
     @BeforeEach
     public void setUp() {
+        leaderBoardController = new LeaderBoardController();
     }
 }
