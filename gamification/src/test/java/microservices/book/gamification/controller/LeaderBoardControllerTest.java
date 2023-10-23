@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,5 +35,7 @@ public class LeaderBoardControllerTest {
                 .willReturn(IntStream.range(1, 11)
                         .mapToObj(i -> new LeaderBoardRow((long) i, (long) (10 - i)))
                         .collect(Collectors.toList()));
+
+        List<LeaderBoardRow> leaderBoard = leaderBoardController.getLeaderBoard();
     }
 }
