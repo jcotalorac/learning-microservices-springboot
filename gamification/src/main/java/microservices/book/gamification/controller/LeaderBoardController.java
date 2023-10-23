@@ -19,6 +19,6 @@ public class LeaderBoardController {
 
     @GetMapping
     public List<LeaderBoardRow> getLeaderBoard(){
-        return null;
+        return leaderBoardService.getCurrentLeaderBoard();
     }
 }
