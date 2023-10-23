@@ -1,6 +1,7 @@
 package microservices.book.gamification.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,4 +15,7 @@ public class LeaderBoardControllerTest {
     public void setUp() {
         leaderBoardController = new LeaderBoardController();
     }
+
+    @Test
+    public void retrieveLeaderBoardTest() {}
 }
