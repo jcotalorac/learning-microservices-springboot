@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,5 +41,8 @@ public class LeaderBoardServiceImplTest {
         List<LeaderBoardRow> currentLeaderBoard = leaderBoardService.getCurrentLeaderBoard();
 
         assertThat(currentLeaderBoard.size()).isEqualTo(10);
+        assertThat(currentLeaderBoard).isSortedAccordingTo(Comparator
+                .comparingLong(LeaderBoardRow::getTotalScore)
+                .reversed());
     }
 }
