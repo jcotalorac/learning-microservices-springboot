@@ -33,8 +33,8 @@ public class LeaderBoardServiceImplTest {
     public void retrieveLeaderBoardTest() {
 
         given(scoreCardRepository.findFirst10())
-                .willReturn(IntStream.range(11, 1)
-                        .mapToObj(i -> new LeaderBoardRow((long) i, (long) (i * 10)))
+                .willReturn(IntStream.range(1, 11)
+                        .mapToObj(i -> new LeaderBoardRow((long) i, (long) (10 - i)))
                         .collect(Collectors.toList()));
 
         List<LeaderBoardRow> currentLeaderBoard = leaderBoardService.getCurrentLeaderBoard();
