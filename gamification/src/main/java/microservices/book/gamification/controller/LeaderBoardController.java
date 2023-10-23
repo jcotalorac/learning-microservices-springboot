@@ -1,4 +1,9 @@
 package microservices.book.gamification.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/leaders")
 public class LeaderBoardController {
 }
