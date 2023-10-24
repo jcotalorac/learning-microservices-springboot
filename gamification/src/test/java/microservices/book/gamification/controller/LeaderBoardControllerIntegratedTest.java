@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LeaderBoardControllerIntegratedTest {
+public class LeaderBoardControllerIntegratedTest {
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
     }
 
     @Test
-    void getLeaderBoard() {
+    public void getLeaderBoard() {
     }
 }
