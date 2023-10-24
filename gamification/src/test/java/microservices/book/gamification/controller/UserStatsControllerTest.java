@@ -20,5 +20,7 @@ public class UserStatsControllerTest {
     }
 
     @Test
-    public void retrieveUserStats() {}
+    public void retrieveUserStats() {
+        Long userId = 2L;
+    }
 }
