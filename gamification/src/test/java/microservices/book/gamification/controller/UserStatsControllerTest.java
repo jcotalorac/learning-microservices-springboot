@@ -31,5 +31,7 @@ public class UserStatsControllerTest {
         given(gameService.retrieveStatsForUser(userId))
                 .willReturn(new GameStats(userId, 100,
                         List.of(Badge.BRONZE_MULTIPLICATOR, Badge.SILVER_MULTIPLICATOR)));
+
+        GameStats statsForUser = userStatsController.getStatsForUser();
     }
 }
