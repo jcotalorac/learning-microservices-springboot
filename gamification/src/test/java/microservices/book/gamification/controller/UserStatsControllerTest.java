@@ -2,6 +2,7 @@ package microservices.book.gamification.controller;
 
 import microservices.book.gamification.service.GameServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -17,4 +18,7 @@ public class UserStatsControllerTest {
         initMocks(this);
         userStatsController = new UserStatsController(gameService);
     }
+
+    @Test
+    public void retrieveUserStats() {}
 }
