@@ -11,7 +11,7 @@ public class UserStatsController {
         this.gameService = gameService;
     }
 
-    public GameStats getStatsForUser() {
+    public GameStats getStatsForUser(Long userId) {
         return null;
     }
 }
