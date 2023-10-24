@@ -12,6 +12,6 @@ public class UserStatsController {
     }
 
     public GameStats getStatsForUser(Long userId) {
-        return null;
+        return gameService.retrieveStatsForUser(userId);
     }
 }
