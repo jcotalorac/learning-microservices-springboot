@@ -27,6 +27,6 @@ public class LeaderBoardControllerIntegratedTest {
     }
 
     @Test
-    public void getLeaderBoard() {
+    public void getLeaderBoardTest() {
     }
 }
