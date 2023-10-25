@@ -18,6 +18,7 @@ public class RabbitMQConfiguration implements RabbitListenerConfigurer {
         return new TopicExchange(exchangeName);
     }
 
+    @Bean
     public Queue gamificationMultiplicationQueue(final String queueName) {
         return new Queue(queueName, true);
     }
