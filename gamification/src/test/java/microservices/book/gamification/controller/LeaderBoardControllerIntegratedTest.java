@@ -40,14 +40,18 @@ public class LeaderBoardControllerIntegratedTest {
 
     @Test
     public void getLeaderBoardTest() throws Exception {
+        List<LeaderBoardRow> leaderBoardRows = IntStream.range(1, 11)
+                .mapToObj(i -> new LeaderBoardRow((long) i, (long) (10 - i)))
+                .collect(Collectors.toList());
+
         given(leaderBoardService.getCurrentLeaderBoard())
-                .willReturn(IntStream.range(1, 11)
-                        .mapToObj(i -> new LeaderBoardRow((long) i, (long) (10 - i)))
-                        .collect(Collectors.toList()));
+                .willReturn(leaderBoardRows);
 
         MockHttpServletResponse response = mvc.perform(get("/leaders")
                 .accept(MediaType.APPLICATION_JSON)).andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString())
+                .isEqualTo(json.write(leaderBoardRows).getJson());
     }
 }
