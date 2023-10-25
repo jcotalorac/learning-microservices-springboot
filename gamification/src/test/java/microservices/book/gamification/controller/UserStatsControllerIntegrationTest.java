@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserStatsControllerIntegrationTest {
+public class UserStatsControllerIntegrationTest {
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
     }
 
     @Test
-    void getStatsForUser() {
+    public void getStatsForUser() {
     }
 }
