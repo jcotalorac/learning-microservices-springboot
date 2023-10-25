@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -46,7 +47,9 @@ public class UserStatsControllerIntegrationTest {
         given(gameService.retrieveStatsForUser(userId))
                 .willReturn(gameStats);
 
-        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/stats"))
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders
+                        .get("/stats").param("userId", userId.toString())
+                        .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
