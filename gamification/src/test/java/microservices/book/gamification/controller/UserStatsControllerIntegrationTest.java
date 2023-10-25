@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
@@ -33,12 +35,15 @@ public class UserStatsControllerIntegrationTest {
     }
 
     @Test
-    public void getStatsForUser() {
+    public void getStatsForUser() throws Exception {
         Long userId = 2L;
         int userScore = 100;
 
         given(gameService.retrieveStatsForUser(userId))
                 .willReturn(new GameStats(userId, userScore,
                         List.of(Badge.BRONZE_MULTIPLICATOR, Badge.SILVER_MULTIPLICATOR)));
+
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/stats"))
+                .andReturn().getResponse();
     }
 }
