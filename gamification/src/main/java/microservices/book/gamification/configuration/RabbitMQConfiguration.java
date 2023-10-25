@@ -1,5 +1,7 @@
 package microservices.book.gamification.configuration;
 
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
@@ -21,6 +23,11 @@ public class RabbitMQConfiguration implements RabbitListenerConfigurer {
     @Bean
     public Queue gamificationMultiplicationQueue(@Value("${multiplication.queue}") final String queueName) {
         return new Queue(queueName, true);
+    }
+
+    public Binding binding(final Queue queue, final TopicExchange exchange,
+                           String routingKey) {
+        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 
     @Bean
