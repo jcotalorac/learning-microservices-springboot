@@ -41,13 +41,15 @@ public class UserStatsControllerIntegrationTest {
         Long userId = 2L;
         int userScore = 100;
 
+        GameStats gameStats = new GameStats(userId, userScore,
+                List.of(Badge.BRONZE_MULTIPLICATOR, Badge.SILVER_MULTIPLICATOR));
         given(gameService.retrieveStatsForUser(userId))
-                .willReturn(new GameStats(userId, userScore,
-                        List.of(Badge.BRONZE_MULTIPLICATOR, Badge.SILVER_MULTIPLICATOR)));
+                .willReturn(gameStats);
 
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get("/stats"))
                 .andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+        assertThat(response.getContentAsString()).isEqualTo(json.write(gameStats).getJson());
     }
 }
