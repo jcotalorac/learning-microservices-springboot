@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 @Configuration
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
 
+    @Bean
     public MappingJackson2MessageConverter consumer() {
         return new MappingJackson2MessageConverter();
     }
