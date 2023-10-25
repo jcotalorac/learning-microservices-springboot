@@ -2,12 +2,14 @@ package microservices.book.gamification.configuration;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 
 @Configuration
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
 
+    @Bean
     public DefaultMessageHandlerMethodFactory messageHandlerMethodFactory() {
         DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
         return factory;
