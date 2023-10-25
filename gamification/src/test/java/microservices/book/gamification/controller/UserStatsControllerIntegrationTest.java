@@ -1,6 +1,7 @@
 package microservices.book.gamification.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.GameStats;
 import microservices.book.gamification.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.List;
+
+import static org.mockito.BDDMockito.given;
 
 @WebMvcTest(UserStatsController.class)
 public class UserStatsControllerIntegrationTest {
@@ -29,5 +34,11 @@ public class UserStatsControllerIntegrationTest {
 
     @Test
     public void getStatsForUser() {
+        Long userId = 2L;
+        int userScore = 100;
+
+        given(gameService.retrieveStatsForUser(userId))
+                .willReturn(new GameStats(userId, userScore,
+                        List.of(Badge.BRONZE_MULTIPLICATOR, Badge.SILVER_MULTIPLICATOR)));
     }
 }
