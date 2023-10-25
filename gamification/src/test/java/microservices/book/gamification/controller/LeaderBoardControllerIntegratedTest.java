@@ -2,11 +2,13 @@ package microservices.book.gamification.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import microservices.book.gamification.domain.LeaderBoardRow;
+import microservices.book.gamification.service.LeaderBoardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -15,6 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(LeaderBoardControllerIntegratedTest.class)
 public class LeaderBoardControllerIntegratedTest {
+
+    @MockBean
+    private LeaderBoardService leaderBoardService;
 
     @Autowired
     private MockMvc mvc;
