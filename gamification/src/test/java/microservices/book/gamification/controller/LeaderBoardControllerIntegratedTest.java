@@ -12,8 +12,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 
 @WebMvcTest(LeaderBoardControllerIntegratedTest.class)
 public class LeaderBoardControllerIntegratedTest {
@@ -33,5 +35,9 @@ public class LeaderBoardControllerIntegratedTest {
 
     @Test
     public void getLeaderBoardTest() {
+        given(leaderBoardService.getCurrentLeaderBoard())
+                .willReturn(IntStream.range(1, 11)
+                        .mapToObj(i -> new LeaderBoardRow((long) i, (long) (10 - i)))
+                        .collect(Collectors.toList()));
     }
 }
