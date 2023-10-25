@@ -1,5 +1,6 @@
 package microservices.book.gamification.configuration;
 
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,10 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 
 @Configuration
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
+
+    public TopicExchange multiplicationExchange(final String exchangeName) {
+        return new TopicExchange(exchangeName);
+    }
 
     @Bean
     public MappingJackson2MessageConverter jackson2MessageConverter() {
