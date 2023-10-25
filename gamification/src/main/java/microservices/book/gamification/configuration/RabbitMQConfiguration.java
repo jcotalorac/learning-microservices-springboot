@@ -3,6 +3,7 @@ package microservices.book.gamification.configuration;
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.listener.RabbitListenerEndpointRegistrar;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MappingJackson2MessageConverter;
@@ -12,7 +13,7 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 public class RabbitMQConfiguration implements RabbitListenerConfigurer {
 
     @Bean
-    public TopicExchange multiplicationExchange(final String exchangeName) {
+    public TopicExchange multiplicationExchange(@Value("${multiplication.exchange}") final String exchangeName) {
         return new TopicExchange(exchangeName);
     }
 
