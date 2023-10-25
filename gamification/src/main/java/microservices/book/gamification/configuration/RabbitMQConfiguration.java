@@ -25,6 +25,7 @@ public class RabbitMQConfiguration implements RabbitListenerConfigurer {
         return new Queue(queueName, true);
     }
 
+    @Bean
     public Binding binding(final Queue queue, final TopicExchange exchange,
                            String routingKey) {
         return BindingBuilder.bind(queue).to(exchange).with(routingKey);
