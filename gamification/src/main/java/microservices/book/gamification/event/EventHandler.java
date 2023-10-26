@@ -13,4 +13,6 @@ public class EventHandler {
     public EventHandler(GameService gameService) {
         this.gameService = gameService;
     }
+
+    void handleMultiplicationSolved(final MultiplicationSolvedEvent event) {}
 }
