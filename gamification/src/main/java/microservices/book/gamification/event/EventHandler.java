@@ -2,6 +2,7 @@ package microservices.book.gamification.event;
 
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.service.GameService;
+import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,6 +23,7 @@ public class EventHandler {
                     event.isCorrect());
         } catch (final Exception e) {
             log.error("Error when trying to process MultiplicationSolvedEvent", e);
+            throw new AmqpRejectAndDontRequeueException(e);
         }
     }
 }
