@@ -9,4 +9,8 @@ import org.springframework.stereotype.Component;
 public class EventHandler {
 
     private GameService gameService;
+
+    public EventHandler(GameService gameService) {
+        this.gameService = gameService;
+    }
 }
