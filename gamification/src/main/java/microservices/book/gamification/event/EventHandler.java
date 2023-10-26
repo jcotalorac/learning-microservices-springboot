@@ -17,7 +17,11 @@ public class EventHandler {
     void handleMultiplicationSolved(final MultiplicationSolvedEvent event) {
         log.info("Multiplication Solved Event received: {}", event.getMultiplicationResultAttemptId());
 
-        gameService.newAttemptForUser(event.getUserId(), event.getMultiplicationResultAttemptId(),
-                event.isCorrect());
+        try {
+            gameService.newAttemptForUser(event.getUserId(), event.getMultiplicationResultAttemptId(),
+                    event.isCorrect());
+        } catch (final Exception e) {
+            log.error("Error when trying to process MultiplicationSolvedEvent", e);
+        }
     }
 }
