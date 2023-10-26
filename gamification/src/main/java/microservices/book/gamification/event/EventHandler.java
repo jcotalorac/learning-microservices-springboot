@@ -14,5 +14,10 @@ public class EventHandler {
         this.gameService = gameService;
     }
 
-    void handleMultiplicationSolved(final MultiplicationSolvedEvent event) {}
+    void handleMultiplicationSolved(final MultiplicationSolvedEvent event) {
+        log.info("Multiplication Solved Event received: {}", event.getMultiplicationResultAttemptId());
+
+        gameService.newAttemptForUser(event.getUserId(), event.getMultiplicationResultAttemptId(),
+                event.isCorrect());
+    }
 }
