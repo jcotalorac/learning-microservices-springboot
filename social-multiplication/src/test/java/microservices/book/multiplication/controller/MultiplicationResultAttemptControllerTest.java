@@ -102,7 +102,7 @@ public class MultiplicationResultAttemptControllerTest {
 
         Long idAttempt = 2L;
 
-        MockHttpServletResponse response = mockMvc.perform(get("/results/{id}", idAttempt)
+        MockHttpServletResponse response = mockMvc.perform(get("/results/{idResult}", idAttempt)
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
