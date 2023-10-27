@@ -105,5 +105,7 @@ public class MultiplicationResultAttemptControllerTest {
         MockHttpServletResponse response = mockMvc.perform(get("/results/{id}", idAttempt)
                         .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
+
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 }
