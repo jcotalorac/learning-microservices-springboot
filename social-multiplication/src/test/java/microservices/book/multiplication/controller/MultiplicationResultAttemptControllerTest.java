@@ -96,4 +96,7 @@ public class MultiplicationResultAttemptControllerTest {
                                 attempt.getResultAttempt(), correct))
                         .getJson());
     }
+
+    @Test
+    public void getResultsByIdTest() {}
 }
