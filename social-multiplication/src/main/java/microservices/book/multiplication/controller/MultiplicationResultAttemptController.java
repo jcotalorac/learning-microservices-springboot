@@ -35,6 +35,11 @@ public final class MultiplicationResultAttemptController {
         return ResponseEntity.ok(multiplicationService.getStatsForUser(alias));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity getResultById() {
+        return null;
+    }
+
     @RequiredArgsConstructor
     @Getter
     static final class ResultResponse {
