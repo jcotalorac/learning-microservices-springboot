@@ -94,6 +94,9 @@ public class MultiplicationServiceTest {
     }
 
     @Test
-    public void getResultByIdTest() {}
+    public void getResultByIdTest() {
+
+        Long attemptId = 1L;
+    }
 
 }
