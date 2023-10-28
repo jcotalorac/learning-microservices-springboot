@@ -102,6 +102,9 @@ public class MultiplicationServiceTest {
         User user = new User("john_doe");
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication,
                 3010, false);
+
+        given(multiplicationResultAttemptRepository.findById(attemptId))
+                .willReturn(Optional.of(attempt));
     }
 
 }
