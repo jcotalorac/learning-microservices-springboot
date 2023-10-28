@@ -107,6 +107,8 @@ public class MultiplicationServiceTest {
                 .willReturn(Optional.of(attempt));
 
         MultiplicationResultAttempt multiplicationResultAttempt = multiplicationService.getResultById(attemptId);
+
+        assertThat(multiplicationResultAttempt).isEqualTo(attempt);
     }
 
 }
