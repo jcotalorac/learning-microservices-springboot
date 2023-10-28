@@ -105,6 +105,8 @@ public class MultiplicationServiceTest {
 
         given(multiplicationResultAttemptRepository.findById(attemptId))
                 .willReturn(Optional.of(attempt));
+
+        MultiplicationResultAttempt multiplicationResultAttempt = multiplicationService.getResultById(attemptId);
     }
 
 }
