@@ -76,6 +76,6 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     public MultiplicationResultAttempt getResultById(Long idResult) {
-        return null;
+        return multiplicationResultAttemptRepository.findById(idResult).orElseThrow();
     }
 }
