@@ -110,4 +110,22 @@ public class MultiplicationServiceImplTest {
 
         assertThat(latestAttemptsResult).isEqualTo(latestAttempts);
     }
+
+    @Test
+    public void getResultByIdTest() {
+
+        Long attemptId = 1L;
+
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("john_doe");
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(user, multiplication,
+                3010, false);
+
+        given(multiplicationResultAttemptRepository.findById(attemptId))
+                .willReturn(Optional.of(attempt));
+
+        MultiplicationResultAttempt multiplicationResultAttempt = multiplicationService.getResultById(attemptId);
+
+        assertThat(multiplicationResultAttempt).isEqualTo(attempt);
+    }
 }
