@@ -93,4 +93,7 @@ public class MultiplicationServiceTest {
         assertThat(latestAttemptsResult).isEqualTo(latestAttempts);
     }
 
+    @Test
+    public void getResultByIdTest() {}
+
 }
