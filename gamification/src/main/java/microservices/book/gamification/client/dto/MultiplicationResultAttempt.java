@@ -1,14 +1,17 @@
 package microservices.book.gamification.client.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+import microservices.book.gamification.client.MultiplicationResultAttemptDeserializer;
 
 @RequiredArgsConstructor
 @Getter
 @ToString
 @EqualsAndHashCode
+@JsonDeserialize(using = MultiplicationResultAttemptDeserializer.class)
 public final class MultiplicationResultAttempt {
 
     private final String userAlias;
