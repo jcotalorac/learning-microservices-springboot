@@ -16,6 +16,10 @@ public class MultiplicationResultAttemptDeserializer extends JsonDeserializer<Mu
     public MultiplicationResultAttempt deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
         ObjectCodec objectCodec = p.getCodec();
         JsonNode node = objectCodec.readTree(p);
-        return null;
+        return new MultiplicationResultAttempt(node.get("user").get("alias").toString(),
+                node.get("multiplication").get("factorA").asInt(),
+                node.get("multiplication").get("factorB").asInt(),
+                node.get("multiplication").get("resultAttempt").asInt(),
+                node.get("correct").asBoolean());
     }
 }
