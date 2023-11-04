@@ -128,5 +128,7 @@ public class GameServiceImplTest {
                 .willReturn(attempt);
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
+
+        assertThat(gameIteration.getBadges()).containsOnly(Badge.LUCKY_NUMBER);
     }
 }
