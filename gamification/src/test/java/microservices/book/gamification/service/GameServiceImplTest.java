@@ -126,5 +126,7 @@ public class GameServiceImplTest {
                 42, 10, 420, true);
         given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId))
                 .willReturn(attempt);
+
+        GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
     }
 }
