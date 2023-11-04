@@ -1,6 +1,8 @@
 package microservices.book.gamification.service;
 
 import lombok.extern.slf4j.Slf4j;
+import microservices.book.gamification.client.MultiplicationResultAttemptClient;
+import microservices.book.gamification.client.MultiplicationResultAttemptClientImpl;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
@@ -20,12 +22,15 @@ import java.util.stream.Collectors;
 public class GameServiceImpl implements GameService {
     private ScoreCardRepository scoreCardRepository;
     private BadgeCardRepository badgeCardRepository;
+    private MultiplicationResultAttemptClient multiplicationResultAttemptClient;
 
     @Autowired
     public GameServiceImpl(ScoreCardRepository scoreCardRepository,
-                           BadgeCardRepository badgeCardRepository) {
+                           BadgeCardRepository badgeCardRepository,
+                           MultiplicationResultAttemptClientImpl multiplicationResultAttemptClient) {
         this.scoreCardRepository = scoreCardRepository;
         this.badgeCardRepository = badgeCardRepository;
+        this.multiplicationResultAttemptClient = multiplicationResultAttemptClient;
     }
 
     @Override

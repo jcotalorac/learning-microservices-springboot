@@ -39,7 +39,7 @@ public class GameServiceImplTest {
     @BeforeAll
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository);
+        gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository, multiplicationResultAttemptClient);
     }
 
     @Test
