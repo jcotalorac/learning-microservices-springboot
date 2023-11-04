@@ -75,7 +75,8 @@ public class GameServiceImpl implements GameService {
         if (!containsBadge(badgeCardsRetrieved, Badge.LUCKY_NUMBER) &&
                 resultAttempt.getMultiplicationFactorA() == LUCKY_NUMBER ||
                 resultAttempt.getMultiplicationFactorB() == LUCKY_NUMBER) {
-            badgeCardsAssigned.add(new BadgeCard(userId, Badge.LUCKY_NUMBER));
+            BadgeCard luckyNumberBadge = giveBadgeToUser(userId, Badge.LUCKY_NUMBER);
+            badgeCardsAssigned.add(luckyNumberBadge);
         }
         return badgeCardsAssigned;
     }
