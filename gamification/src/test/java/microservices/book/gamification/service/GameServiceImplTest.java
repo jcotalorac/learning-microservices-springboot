@@ -1,6 +1,7 @@
 package microservices.book.gamification.service;
 
 import microservices.book.gamification.client.MultiplicationResultAttemptClientImpl;
+import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
@@ -120,5 +121,10 @@ public class GameServiceImplTest {
 
         Long userId = 4L;
         Long attemptId = 5L;
+
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
+                42, 10, 420, true);
+        given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId))
+                .willReturn(attempt);
     }
 }
