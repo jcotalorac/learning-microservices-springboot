@@ -1,5 +1,6 @@
 package microservices.book.gamification.service;
 
+import microservices.book.gamification.client.MultiplicationResultAttemptClientImpl;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
@@ -30,6 +31,9 @@ public class GameServiceImplTest {
     private ScoreCardRepository scoreCardRepository;
     @Mock
     private BadgeCardRepository badgeCardRepository;
+
+    @Mock
+    private MultiplicationResultAttemptClientImpl multiplicationResultAttemptClient;
     private GameServiceImpl gameService;
 
     @BeforeAll
