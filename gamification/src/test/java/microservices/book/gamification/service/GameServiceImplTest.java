@@ -110,4 +110,7 @@ public class GameServiceImplTest {
         assertThat(gameStats.getScore()).isEqualTo(totalScore);
         assertThat(gameStats.getBadges()).containsOnly(Badge.SILVER_MULTIPLICATOR);
     }
+
+    @Test
+    public void processCorrectAttemptForLuckyNumberBadgeTest() {}
 }
