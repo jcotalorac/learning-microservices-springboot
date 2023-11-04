@@ -129,7 +129,7 @@ public class GameServiceImplTest {
         Long attemptId = 5L;
 
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
-                .willReturn(List.of(new BadgeCard(userId, Badge.LUCKY_NUMBER)));
+                .willReturn(List.of());
 
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
                 42, 10, 420, true);
