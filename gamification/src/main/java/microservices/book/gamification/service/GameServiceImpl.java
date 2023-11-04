@@ -40,7 +40,7 @@ public class GameServiceImpl implements GameService {
             scoreCardRepository.save(scoreCard);
             log.info("User with id {} scored {} points for attempt id {}", userId,
                     scoreCard.getScore(), attemptId);
-            List<BadgeCard> badges = processForBadges(userId);
+            List<BadgeCard> badges = processForBadges(userId, attemptId);
             return new GameStats(userId, scoreCard.getScore(), badges.stream()
                     .map(BadgeCard::getBadge)
                     .collect(Collectors.toList()));
@@ -48,7 +48,7 @@ public class GameServiceImpl implements GameService {
         return GameStats.emptyStats(userId);
     }
 
-    private List<BadgeCard> processForBadges(Long userId) {
+    private List<BadgeCard> processForBadges(Long userId, Long attemptId) {
         int totalScore = scoreCardRepository.getTotalScoreForUser(userId);
         log.info("New score for user {} is {}", userId, totalScore);
 
