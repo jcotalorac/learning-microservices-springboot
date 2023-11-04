@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -41,6 +42,11 @@ public class GameServiceImplTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository, multiplicationResultAttemptClient);
+
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
+                42, 10, 420, true);
+        given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(anyLong()))
+                .willReturn(attempt);
     }
 
     @Test
@@ -122,10 +128,6 @@ public class GameServiceImplTest {
         Long userId = 4L;
         Long attemptId = 5L;
 
-        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
-                42, 10, 420, true);
-        given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId))
-                .willReturn(attempt);
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of(new BadgeCard(userId, Badge.LUCKY_NUMBER)));
 
