@@ -3,6 +3,7 @@ package microservices.book.gamification.service;
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.client.MultiplicationResultAttemptClient;
 import microservices.book.gamification.client.MultiplicationResultAttemptClientImpl;
+import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
@@ -67,6 +68,9 @@ public class GameServiceImpl implements GameService {
             BadgeCard firstWonBadge = giveBadgeToUser(userId, Badge.FIRST_WON);
             badgeCardsAssigned.add(firstWonBadge);
         }
+
+        MultiplicationResultAttempt resultAttempt = multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId);
+
         return badgeCardsAssigned;
     }
 
