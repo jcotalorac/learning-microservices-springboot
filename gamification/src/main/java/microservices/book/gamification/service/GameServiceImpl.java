@@ -71,6 +71,9 @@ public class GameServiceImpl implements GameService {
 
         MultiplicationResultAttempt resultAttempt = multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId);
 
+        if (resultAttempt.getMultiplicationFactorA() == 42 || resultAttempt.getMultiplicationFactorB() == 42) {
+            badgeCardsAssigned.add(new BadgeCard(userId, Badge.LUCKY_NUMBER));
+        }
         return badgeCardsAssigned;
     }
 
