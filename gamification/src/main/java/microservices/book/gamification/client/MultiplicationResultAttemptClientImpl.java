@@ -1,6 +1,7 @@
 package microservices.book.gamification.client;
 
 import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,6 +11,7 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
     private final RestTemplate restTemplate;
     private final String multiplicationHost;
 
+    @Autowired
     public MultiplicationResultAttemptClientImpl(RestTemplate restTemplate, String multiplicationHost) {
         this.restTemplate = restTemplate;
         this.multiplicationHost = multiplicationHost;
