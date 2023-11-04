@@ -131,6 +131,11 @@ public class GameServiceImplTest {
         given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
                 .willReturn(List.of(new BadgeCard(userId, Badge.LUCKY_NUMBER)));
 
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
+                42, 10, 420, true);
+        given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(anyLong()))
+                .willReturn(attempt);
+
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
         assertThat(gameIteration.getBadges()).containsOnly(Badge.LUCKY_NUMBER);
