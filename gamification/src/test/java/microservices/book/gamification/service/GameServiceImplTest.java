@@ -126,6 +126,8 @@ public class GameServiceImplTest {
                 42, 10, 420, true);
         given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId))
                 .willReturn(attempt);
+        given(badgeCardRepository.findByUserIdOrderByBadgeTimestampDesc(userId))
+                .willReturn(List.of(new BadgeCard(userId, Badge.LUCKY_NUMBER)));
 
         GameStats gameIteration = gameService.newAttemptForUser(userId, attemptId, true);
 
