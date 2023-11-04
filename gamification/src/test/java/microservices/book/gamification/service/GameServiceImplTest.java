@@ -112,5 +112,9 @@ public class GameServiceImplTest {
     }
 
     @Test
-    public void processCorrectAttemptForLuckyNumberBadgeTest() {}
+    public void processCorrectAttemptForLuckyNumberBadgeTest() {
+
+        Long userId = 4L;
+        Long attemptId = 5L;
+    }
 }
