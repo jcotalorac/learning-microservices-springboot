@@ -44,7 +44,7 @@ public class GameServiceImplTest {
         gameService = new GameServiceImpl(scoreCardRepository, badgeCardRepository, multiplicationResultAttemptClient);
 
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt("john_doe",
-                42, 10, 420, true);
+                41, 10, 410, true);
         given(multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(anyLong()))
                 .willReturn(attempt);
     }
