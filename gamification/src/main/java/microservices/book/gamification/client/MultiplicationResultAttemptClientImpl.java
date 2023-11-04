@@ -9,6 +9,12 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
 
     private final RestTemplate restTemplate;
     private final String multiplicationHost;
+
+    public MultiplicationResultAttemptClientImpl(RestTemplate restTemplate, String multiplicationHost) {
+        this.restTemplate = restTemplate;
+        this.multiplicationHost = multiplicationHost;
+    }
+
     @Override
     public MultiplicationResultAttempt retrieveMultiplicationResultAttemptById(Long multiplicationId) {
         return null;
