@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class GameServiceImpl implements GameService {
+    public static final int LUCKY_NUMBER = 42;
     private ScoreCardRepository scoreCardRepository;
     private BadgeCardRepository badgeCardRepository;
     private MultiplicationResultAttemptClient multiplicationResultAttemptClient;
@@ -71,7 +72,7 @@ public class GameServiceImpl implements GameService {
 
         MultiplicationResultAttempt resultAttempt = multiplicationResultAttemptClient.retrieveMultiplicationResultAttemptById(attemptId);
 
-        if (resultAttempt.getMultiplicationFactorA() == 42 || resultAttempt.getMultiplicationFactorB() == 42) {
+        if (resultAttempt.getMultiplicationFactorA() == LUCKY_NUMBER || resultAttempt.getMultiplicationFactorB() == LUCKY_NUMBER) {
             badgeCardsAssigned.add(new BadgeCard(userId, Badge.LUCKY_NUMBER));
         }
         return badgeCardsAssigned;
