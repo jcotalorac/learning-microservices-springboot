@@ -65,7 +65,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         multiplicationResultAttemptRepository.save(checkedAttempt);
 
         eventDispatcher.send(new MultiplicationSolvedEvent(checkedAttempt.getId(),
-                checkedAttempt.getId(), checkedAttempt.isCorrect()));
+                checkedAttempt.getUser().getId(), checkedAttempt.isCorrect()));
         return correct;
     }
 
