@@ -19,7 +19,7 @@ public class MultiplicationResultAttemptDeserializer extends JsonDeserializer<Mu
         return new MultiplicationResultAttempt(node.get("user").get("alias").toString(),
                 node.get("multiplication").get("factorA").asInt(),
                 node.get("multiplication").get("factorB").asInt(),
-                node.get("multiplication").get("resultAttempt").asInt(),
+                node.get("resultAttempt").asInt(),
                 node.get("correct").asBoolean());
     }
 }
