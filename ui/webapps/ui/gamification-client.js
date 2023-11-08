@@ -23,7 +23,9 @@ function updateStats(userId) {
         },
         error: function(data){
             $('#stats-div').show();
-            $('#stats-user-id').empty();
+            $('#stats-user-id').empty().append(userId);
+            $('#stats-score').empty().append(0);
+            $('#stats-badges').empty();
         }
     });
 }
