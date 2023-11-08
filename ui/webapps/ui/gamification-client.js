@@ -33,4 +33,6 @@ function updateStats(userId) {
 $(document).ready(function(){
 
     updateLeaderBoard();
+
+    $('#refresh-leaderboard').click();
 });
