@@ -30,4 +30,7 @@ function updateStats(userId) {
     });
 }
 
-$(document).ready();
+$(document).ready(function(){
+
+    updateLeaderBoard();
+});
