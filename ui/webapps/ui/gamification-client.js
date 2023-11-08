@@ -15,7 +15,9 @@ function updateLeaderBoard() {
 function updateStats(userId) {
     $.ajax({
         url: "http://localhost:8081/stats?userId=" + userId,
-        success: function(data){},
+        success: function(data){
+            $('#stats-div').show();
+        },
         error: function(data){}
     });
 }
