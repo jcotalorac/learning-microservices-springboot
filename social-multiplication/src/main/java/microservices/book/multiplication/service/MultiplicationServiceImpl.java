@@ -1,8 +1,11 @@
 package microservices.book.multiplication.service;
 
+import jakarta.transaction.Transactional;
 import microservices.book.multiplication.domain.Multiplication;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.domain.User;
+import microservices.book.multiplication.event.EventDispatcher;
+import microservices.book.multiplication.event.MultiplicationSolvedEvent;
 import microservices.book.multiplication.repository.MultiplicationResultAttemptRepository;
 import microservices.book.multiplication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +24,17 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     private MultiplicationResultAttemptRepository multiplicationResultAttemptRepository;
 
+    private EventDispatcher eventDispatcher;
+
     @Autowired
     public MultiplicationServiceImpl(RandomGeneratorService randomGeneratorService,
                                      MultiplicationResultAttemptRepository multiplicationResultAttemptRepository,
-                                     UserRepository userRepository) {
+                                     UserRepository userRepository,
+                                     EventDispatcher eventDispatcher) {
         this.randomGeneratorService = randomGeneratorService;
         this.multiplicationResultAttemptRepository = multiplicationResultAttemptRepository;
         this.userRepository = userRepository;
+        this.eventDispatcher = eventDispatcher;
     }
 
     @Override
@@ -37,6 +44,7 @@ public class MultiplicationServiceImpl implements MultiplicationService {
         return new Multiplication(factorA, factorB);
     }
 
+    @Transactional
     @Override
     public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
 
@@ -55,11 +63,19 @@ public class MultiplicationServiceImpl implements MultiplicationService {
                 correct);
 
         multiplicationResultAttemptRepository.save(checkedAttempt);
+
+        eventDispatcher.send(new MultiplicationSolvedEvent(checkedAttempt.getId(),
+                checkedAttempt.getUser().getId(), checkedAttempt.isCorrect()));
         return correct;
     }
 
     @Override
     public List<MultiplicationResultAttempt> getStatsForUser(String userAlias) {
         return multiplicationResultAttemptRepository.findTop5ByUserAliasOrderByIdDesc(userAlias);
+    }
+
+    @Override
+    public MultiplicationResultAttempt getResultById(Long idResult) {
+        return multiplicationResultAttemptRepository.findById(idResult).orElseThrow();
     }
 }
