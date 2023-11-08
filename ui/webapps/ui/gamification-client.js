@@ -12,5 +12,7 @@ function updateLeaderBoard() {
     });
 }
 
-function updateStats() {
+function updateStats(userId) {
+    $.ajax(
+    );
 }
