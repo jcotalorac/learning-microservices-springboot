@@ -19,7 +19,7 @@ function updateStats(userId) {
             $('#stats-div').show();
             $('#stats-user-id').empty().append(userId);
             $('#stats-score').empty().append(data.score);
-            $('#stats-badges').empty();
+            $('#stats-badges').empty().append(data.badges.join());
         },
         error: function(data){}
     });
