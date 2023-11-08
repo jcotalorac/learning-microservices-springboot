@@ -1,2 +1,4 @@
 function updateLeaderBoard() {
+    $.ajax(
+    ).then();
 }
