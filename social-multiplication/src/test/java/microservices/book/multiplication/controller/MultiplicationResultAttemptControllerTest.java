@@ -96,4 +96,16 @@ public class MultiplicationResultAttemptControllerTest {
                                 attempt.getResultAttempt(), correct))
                         .getJson());
     }
+
+    @Test
+    public void getResultsByIdTest() throws Exception {
+
+        Long idAttempt = 2L;
+
+        MockHttpServletResponse response = mockMvc.perform(get("/results/{idResult}", idAttempt)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    }
 }
