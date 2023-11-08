@@ -34,5 +34,7 @@ $(document).ready(function(){
 
     updateLeaderBoard();
 
-    $('#refresh-leaderboard').click();
+    $('#refresh-leaderboard').click(function(event){
+        updateLeaderBoard();
+    });
 });
