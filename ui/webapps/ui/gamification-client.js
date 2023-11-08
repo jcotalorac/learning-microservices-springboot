@@ -23,6 +23,7 @@ function updateStats(userId) {
         },
         error: function(data){
             $('#stats-div').show();
+            $('#stats-user-id').empty();
         }
     });
 }
