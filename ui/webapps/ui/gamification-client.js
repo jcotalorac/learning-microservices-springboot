@@ -18,6 +18,7 @@ function updateStats(userId) {
         success: function(data){
             $('#stats-div').show();
             $('#stats-user-id').empty().append(userId);
+            $('#stats-user-score').empty();
         },
         error: function(data){}
     });
