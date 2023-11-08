@@ -21,6 +21,8 @@ function updateStats(userId) {
             $('#stats-score').empty().append(data.score);
             $('#stats-badges').empty().append(data.badges.join());
         },
-        error: function(data){}
+        error: function(data){
+            $('#stats-div').show();
+        }
     });
 }
