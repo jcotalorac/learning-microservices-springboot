@@ -1,5 +1,6 @@
 function updateLeaderBoard() {
     $.ajax({
         url: "http://localhost:8081/leaders"
-    }).then();
+    }).then(function(data){
+    });
 }
