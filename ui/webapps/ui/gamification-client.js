@@ -11,3 +11,6 @@ function updateLeaderBoard() {
         });
     });
 }
+
+function updateStats() {
+}
