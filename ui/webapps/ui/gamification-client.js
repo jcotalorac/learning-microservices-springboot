@@ -29,3 +29,5 @@ function updateStats(userId) {
         }
     });
 }
+
+$(document).ready();
