@@ -17,6 +17,7 @@ function updateStats(userId) {
         url: "http://localhost:8081/stats?userId=" + userId,
         success: function(data){
             $('#stats-div').show();
+            $('#stats-user-id').empty();
         },
         error: function(data){}
     });
