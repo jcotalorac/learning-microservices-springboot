@@ -10,7 +10,7 @@ function updateMultiplication() {
     });
 }
 
-function updateStats(alias) {
+function updateResults(alias) {
     $.ajax({
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
@@ -68,6 +68,6 @@ $(document).ready(function(){
             }
         });
         updateMultiplication();
-        updateStats(userAlias);
+        updateResults(userAlias);
     });
 });
