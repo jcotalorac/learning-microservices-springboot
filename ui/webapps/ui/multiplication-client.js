@@ -14,7 +14,8 @@ function updateResults(alias) {
     $.ajax({
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
-        $('#stats-body').empty();
+        $('#results-div').show();
+        $('#results-body').empty();
 
         data.forEach(function(row){
             $('#stats-body')
