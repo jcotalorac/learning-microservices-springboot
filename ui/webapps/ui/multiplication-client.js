@@ -18,7 +18,7 @@ function updateResults(alias) {
         $('#results-body').empty();
 
         data.forEach(function(row){
-            $('#stats-body')
+            $('#results-body')
                 .append('<tr>' +
                 '<td>' + row.id + '</td>' +
                 '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
