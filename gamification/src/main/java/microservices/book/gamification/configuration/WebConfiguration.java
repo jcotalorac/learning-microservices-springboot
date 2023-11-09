@@ -1,4 +1,6 @@
 package microservices.book.gamification.configuration;
 
-public class WebConfiguration {
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+public class WebConfiguration implements WebMvcConfigurer {
 }
