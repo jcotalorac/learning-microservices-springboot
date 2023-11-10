@@ -74,7 +74,9 @@ $(document).ready(function(){
             }
         });
         updateMultiplication();
+
         var userId = updateResults(userAlias);
         updateStats(userId);
+        updateLeaderBoard();
     });
 });
