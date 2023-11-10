@@ -67,9 +67,9 @@ $(document).ready(function(){
             async: false,
             success: function(result) {
                 if (result.correct) {
-                    $('.result-message').empty().append("The result is correct! Congratulations!");
+                    $('.result-message').empty().append("<p class='bg-success text-center'>The result is correct! Congratulations!</p>");
                 } else {
-                    $('.result-message').empty().append("Oops that's not correct! But keep trying!");
+                    $('.result-message').empty().append("<p class='bg-danger text-center'>Oops that's not correct! But keep trying!</p>");
                 }
             }
         });
