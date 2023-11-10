@@ -13,6 +13,7 @@ function updateMultiplication() {
 function updateResults(alias) {
     var userId = -1;
     $.ajax({
+        async: false,
         url: "http://localhost:8080/results?alias=" + alias,
         success: function(data){
                          $('#results-div').show();
