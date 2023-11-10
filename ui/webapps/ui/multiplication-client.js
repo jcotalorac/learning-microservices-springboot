@@ -11,6 +11,7 @@ function updateMultiplication() {
 }
 
 function updateResults(alias) {
+    var userId = -1;
     $.ajax({
         url: "http://localhost:8080/results?alias=" + alias
     }).then(function(data){
@@ -26,7 +27,9 @@ function updateResults(alias) {
                 '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
                 '</tr>');
         });
+        userId = data[0].user.id;
     });
+    return userId;
 }
 
 $(document).ready(function(){
