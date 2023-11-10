@@ -13,21 +13,22 @@ function updateMultiplication() {
 function updateResults(alias) {
     var userId = -1;
     $.ajax({
-        url: "http://localhost:8080/results?alias=" + alias
-    }).then(function(data){
-        $('#results-div').show();
-        $('#results-body').empty();
+        url: "http://localhost:8080/results?alias=" + alias,
+        success: function(data){
+                         $('#results-div').show();
+                         $('#results-body').empty();
 
-        data.forEach(function(row){
-            $('#results-body')
-                .append('<tr>' +
-                '<td>' + row.id + '</td>' +
-                '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
-                '<td>' + row.resultAttempt + '</td>' +
-                '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
-                '</tr>');
-        });
-        userId = data[0].user.id;
+                         data.forEach(function(row){
+                             $('#results-body')
+                                 .append('<tr>' +
+                                 '<td>' + row.id + '</td>' +
+                                 '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
+                                 '<td>' + row.resultAttempt + '</td>' +
+                                 '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
+                                 '</tr>');
+                         });
+                         userId = data[0].user.id;
+                     }
     });
     return userId;
 }
