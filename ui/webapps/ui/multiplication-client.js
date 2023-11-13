@@ -10,22 +10,28 @@ function updateMultiplication() {
     });
 }
 
-function updateStats(alias) {
+function updateResults(alias) {
+    var userId = -1;
     $.ajax({
-        url: "http://localhost:8080/results?alias=" + alias
-    }).then(function(data){
-        $('#stats-body').empty();
+        async: false,
+        url: "http://localhost:8080/results?alias=" + alias,
+        success: function(data){
+                         $('#results-div').show();
+                         $('#results-body').empty();
 
-        data.forEach(function(row){
-            $('#stats-body')
-                .append('<tr>' +
-                '<td>' + row.id + '</td>' +
-                '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
-                '<td>' + row.resultAttempt + '</td>' +
-                '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
-                '</tr>');
-        });
+                         data.forEach(function(row){
+                             $('#results-body')
+                                 .append('<tr>' +
+                                 '<td>' + row.id + '</td>' +
+                                 '<td>' + row.multiplication.factorA + ' x ' + row.multiplication.factorB + '</td>' +
+                                 '<td>' + row.resultAttempt + '</td>' +
+                                 '<td>' + (row.correct == true ? 'YES': 'NO') + '</td>' +
+                                 '</tr>');
+                         });
+                         userId = data[0].user.id;
+                     }
     });
+    return userId;
 }
 
 $(document).ready(function(){
@@ -53,7 +59,7 @@ $(document).ready(function(){
         };
 
         $.ajax({
-            url: "/results",
+            url: "http://localhost:8080/results",
             type: 'POST',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
@@ -61,13 +67,16 @@ $(document).ready(function(){
             async: false,
             success: function(result) {
                 if (result.correct) {
-                    $('.result-message').empty().append("The result is correct! Congratulations!");
+                    $('.result-message').empty().append("<p class='bg-success text-center'>The result is correct! Congratulations!</p>");
                 } else {
-                    $('.result-message').empty().append("Oops that's not correct! But keep trying!");
+                    $('.result-message').empty().append("<p class='bg-danger text-center'>Oops that's not correct! But keep trying!</p>");
                 }
             }
         });
         updateMultiplication();
-        updateStats(userAlias);
+
+        var userId = updateResults(userAlias);
+        updateStats(userId);
+        updateLeaderBoard();
     });
 });
