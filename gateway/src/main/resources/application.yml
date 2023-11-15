@@ -19,3 +19,7 @@ spring:
           uri: http://localhost:8081/leaders
           predicates:
             - Path=/api/leaders/**
+        - id: stats
+          uri: http://localhost:8081/stats
+          predicates:
+            - Path=/api/stats/**
