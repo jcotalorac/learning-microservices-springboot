@@ -1,2 +1,11 @@
 server:
   port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: multiplications
+          uri: http://localhost:8080/multiplications
+          predicates:
+            - Path=/multiplications/**
