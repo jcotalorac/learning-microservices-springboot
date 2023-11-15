@@ -1,4 +1,6 @@
 package microservices.book.gateway.configuration;
 
-public class WebConfiguration {
+import org.springframework.web.reactive.config.WebFluxConfigurer;
+
+public class WebConfiguration implements WebFluxConfigurer {
 }
