@@ -16,7 +16,7 @@ function updateLeaderBoard() {
 
 function updateStats(userId) {
     $.ajax({
-        url: SERVER_URL = "/stats?userId=" + userId,
+        url: SERVER_URL + "/stats?userId=" + userId,
         success: function(data){
             $('#stats-div').show();
             $('#stats-user-id').empty().append(userId);
