@@ -15,6 +15,7 @@ spring:
           uri: http://localhost:8080/results
           predicates:
             - Path=/api/results/**
+            - Method=GET,POST
         - id: leaders
           uri: http://localhost:8081/leaders
           predicates:
