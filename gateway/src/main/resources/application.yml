@@ -29,3 +29,7 @@ management:
   endpoint:
     gateway:
       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health,info
