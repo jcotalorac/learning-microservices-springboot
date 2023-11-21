@@ -1,6 +1,8 @@
+var SERVER_URL = "http://localhost:8000/api";
+
 function updateMultiplication() {
     $.ajax({
-        url: "http://localhost:8080/multiplications/random"
+        url: SERVER_URL + "/multiplications/random"
     }).then(function(data){
         $("#attempt-form").find("input[name='result-attempt']").val("");
         $("#attempt-form").find("input[name='user-alias']").val("");
@@ -14,7 +16,7 @@ function updateResults(alias) {
     var userId = -1;
     $.ajax({
         async: false,
-        url: "http://localhost:8080/results?alias=" + alias,
+        url: SERVER_URL + "/results?alias=" + alias,
         success: function(data){
                          $('#results-div').show();
                          $('#results-body').empty();
@@ -59,7 +61,7 @@ $(document).ready(function(){
         };
 
         $.ajax({
-            url: "http://localhost:8080/results",
+            url: SERVER_URL + "/results",
             type: 'POST',
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
