@@ -24,6 +24,8 @@ spring:
           uri: http://localhost:8081/stats
           predicates:
             - Path=/api/stats/**
+  application:
+    name: gateway
 
 management:
   endpoint:
