@@ -2,23 +2,30 @@ package microservices.book.multiplication.controller;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.service.MultiplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/results")
 public final class MultiplicationResultAttemptController {
 
     private final MultiplicationService multiplicationService;
 
+    private int serverPort;
+
     @Autowired
-    public MultiplicationResultAttemptController(final MultiplicationService multiplicationService) {
+    public MultiplicationResultAttemptController(final MultiplicationService multiplicationService,
+                                                 @Value("${server.port}") int serverPort) {
         this.multiplicationService = multiplicationService;
+        this.serverPort = serverPort;
     }
 
     @PostMapping
@@ -37,6 +44,7 @@ public final class MultiplicationResultAttemptController {
 
     @GetMapping("/{idResult}")
     public ResponseEntity<MultiplicationResultAttempt> getResultById(@PathVariable Long idResult) {
+        log.info("Retrieving result {} from server @ {}", idResult, serverPort);
         return ResponseEntity.ok(multiplicationService.getResultById(idResult));
     }
 
