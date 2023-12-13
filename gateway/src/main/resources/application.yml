@@ -3,6 +3,8 @@ server:
 
 spring:
   cloud:
+    loadbalancer:
+      configurations: health-check
     gateway:
       default-filters:
         - StripPrefix=1
