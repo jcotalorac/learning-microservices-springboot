@@ -4,6 +4,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +14,9 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
 
     private final RestTemplate restTemplate;
     private final String multiplicationHost;
+
+    @Autowired
+    private CircuitBreakerFactory circuitBreakerFactory;
 
     @Autowired
     public MultiplicationResultAttemptClientImpl(RestTemplate restTemplate,
@@ -23,8 +28,13 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
     @HystrixCommand(fallbackMethod = "defaultResult")
     @Override
     public MultiplicationResultAttempt retrieveMultiplicationResultAttemptById(Long multiplicationId) {
-        return restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
-                MultiplicationResultAttempt.class);
+
+        CircuitBreaker circuitBreakerMultiplicationClient = circuitBreakerFactory.create("circuitBreakerMultiplicationClient");
+
+        return circuitBreakerMultiplicationClient.run(() -> restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
+                MultiplicationResultAttempt.class));
+        /*return restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
+                MultiplicationResultAttempt.class);*/
     }
 
     private MultiplicationResultAttempt defaultResult(Long multiplicationId) {
