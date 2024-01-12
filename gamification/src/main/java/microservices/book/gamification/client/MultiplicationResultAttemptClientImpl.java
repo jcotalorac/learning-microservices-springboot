@@ -32,7 +32,10 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
         CircuitBreaker circuitBreakerMultiplicationClient = circuitBreakerFactory.create("circuitBreakerMultiplicationClient");
 
         return circuitBreakerMultiplicationClient.run(() -> restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
-                MultiplicationResultAttempt.class));
+                MultiplicationResultAttempt.class), throwable -> {
+            System.out.println("Fallback for circuit breaker called circuitBreakerMultiplicationClient");
+            return defaultResult(multiplicationId);
+        });
         /*return restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
                 MultiplicationResultAttempt.class);*/
     }
