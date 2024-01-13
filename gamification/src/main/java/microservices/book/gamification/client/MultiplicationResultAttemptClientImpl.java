@@ -1,6 +1,9 @@
 package microservices.book.gamification.client;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
+@Slf4j
 public class MultiplicationResultAttemptClientImpl implements MultiplicationResultAttemptClient {
 
     private final RestTemplate restTemplate;
@@ -33,7 +37,7 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
 
         return circuitBreakerMultiplicationClient.run(() -> restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
                 MultiplicationResultAttempt.class), throwable -> {
-            System.out.println("Fallback for circuit breaker called circuitBreakerMultiplicationClient");
+            log.error("Fallback for circuit breaker called circuitBreakerMultiplicationClient", throwable);
             return defaultResult(multiplicationId);
         });
         /*return restTemplate.getForObject(multiplicationHost + "/results/" + multiplicationId,
