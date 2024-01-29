@@ -3,27 +3,31 @@ server:
 
 spring:
   cloud:
+    loadbalancer:
+      configurations: health-check
     gateway:
       default-filters:
         - StripPrefix=1
       routes:
         - id: multiplications
-          uri: http://localhost:8080/multiplications
+          uri: lb://multiplication/multiplications
           predicates:
             - Path=/api/multiplications/**
         - id: results
-          uri: http://localhost:8080/results
+          uri: lb://multiplication/results
           predicates:
             - Path=/api/results/**
             - Method=GET,POST
         - id: leaders
-          uri: http://localhost:8081/leaders
+          uri: lb://gamification/leaders
           predicates:
             - Path=/api/leaders/**
         - id: stats
-          uri: http://localhost:8081/stats
+          uri: lb://gamification/stats
           predicates:
             - Path=/api/stats/**
+  application:
+    name: gateway
 
 management:
   endpoint:
