@@ -21,4 +21,6 @@ public interface ScoreCardRepository extends CrudRepository<ScoreCard, Long> {
     List<LeaderBoardRow> findFirst10();
 
     List<ScoreCard> findByUserIdOrderByScoreTimestampDesc(final Long userId);
+
+    ScoreCard findByAttemptId(Long attemptId);
 }
