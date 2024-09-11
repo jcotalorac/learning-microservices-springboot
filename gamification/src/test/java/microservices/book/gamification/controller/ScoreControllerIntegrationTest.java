@@ -42,7 +42,7 @@ public class ScoreControllerIntegrationTest {
                 .willReturn(scoreCard);
 
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders
-                .get("/scores").queryParam("attemptId", String.valueOf(1)))
+                .get("/scores/{attemptId}", 1))
                 .andReturn()
                 .getResponse();
 
