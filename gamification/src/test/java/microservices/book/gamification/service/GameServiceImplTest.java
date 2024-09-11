@@ -140,4 +140,18 @@ public class GameServiceImplTest {
 
         assertThat(gameIteration.getBadges()).containsOnly(Badge.LUCKY_NUMBER);
     }
+
+    @Test
+    public void retrieveAttemptScoreTest() {
+
+        long attemptId = 1L;
+        ScoreCard scoreCard = new ScoreCard();
+
+        given(scoreCardRepository.findByAttemptId(attemptId)).willReturn(scoreCard);
+
+        ScoreCard score = gameService.getScoreForAttempt(attemptId);
+
+        assertThat(score.getScore()).isEqualTo(0);
+
+    }
 }
